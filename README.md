@@ -7,5 +7,4 @@
 Port of Facebook's [css-layout](facebook css layout) to Swift.
 Checkout the Demo project for further info.
 
-<p align="center">
 ![GitHub Logo](doc/screenshot.jpg)
