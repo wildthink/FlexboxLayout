@@ -583,6 +583,10 @@ public class Node {
         self.layout.reset()
     }
     
+    public func style(@noescape configure: (Style) -> Void) {
+        configure(style)
+    }
+    
     ///Re-set the layout properties
     public func resetLayout() {
         self.layout.reset()
