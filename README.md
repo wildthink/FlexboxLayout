@@ -4,7 +4,7 @@
 [![Platform](https://img.shields.io/badge/platform-ios | osx -lightgrey.svg?style=flat)](#)
 [![Build](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 
-Port of Facebook's [css-layout](facebook css layout) to Swift and *UIView* extension.
+Port of Facebook's [css-layout](facebook css layout) to Swift + *UIView* extension.
 
 
 ![GitHub Logo](doc/animation.gif)
