@@ -91,7 +91,10 @@ extension FlexboxView where Self: ViewType {
         render(self)
         
         //runs the flexbox engine
-        self.computeFlexboxLayout(boundingBox)
+        //TOFIX: 2 pass layout should be removed
+        for var i = 0; i < 2; i++ {
+            self.computeFlexboxLayout(boundingBox)
+        }
     }
     
     /// Internal store for this view
@@ -177,8 +180,7 @@ extension ViewType: FlexboxView {
             self.flexNode.apply(self)
         }
         
-        compute() //1st pass
-        compute() //2nd pass
+        compute()
     }
     
     private func recursivelyAddChildren() {
