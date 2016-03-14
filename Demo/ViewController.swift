@@ -115,9 +115,8 @@ class ViewController: UIViewController {
     }
     
     func render() {
-        self.treeView!.render(self.view.bounds.size) {
-            self.treeView!.center = self.view.center
-        }
+        self.treeView!.render(self.view.bounds.size)
+        self.treeView!.center = self.view.center
     }
     
     func injected() {
