@@ -75,7 +75,7 @@ extension FlexboxView where Self: ViewType {
     }
     
     /// Re-configure the view and re-compute the flexbox layout
-    public func render(boundingBox: CGSize) {
+    public func render(boundingBox: CGSize, completion:((Void)->Void)? = nil) {
         
         func render(view: ViewType) {
             
@@ -88,12 +88,12 @@ extension FlexboxView where Self: ViewType {
             }
         }
 
-        render(self)
-        
-        //runs the flexbox engine
-        //TOFIX: 2 pass layout should be removed
-        for var i = 0; i < 2; i++ {
-            self.computeFlexboxLayout(boundingBox)
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) { [weak self] in
+            guard let _self = self else { return }
+            render(_self)
+            _self.computeFlexboxLayout(boundingBox)
+            if let completion = completion { completion() }
         }
     }
     

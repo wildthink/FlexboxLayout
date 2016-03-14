@@ -15,6 +15,7 @@
 		168E964E1C89AF6B00AEEC7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 168E964C1C89AF6B00AEEC7F /* LaunchScreen.storyboard */; };
 		168E96571C89B32F00AEEC7F /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C073881C889DB9005EB8DD /* Layout.swift */; };
 		168E96581C89B32F00AEEC7F /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168E96531C89AF8800AEEC7F /* View.swift */; };
+		16A1D4E21C930E3A001AEDD7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A1D4E11C930E3A001AEDD7 /* main.m */; };
 		16C0737D1C889D09005EB8DD /* FlexboxLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 16C0737C1C889D09005EB8DD /* FlexboxLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		16C073861C889D15005EB8DD /* Layout.c in Sources */ = {isa = PBXBuildFile; fileRef = 16C073841C889D15005EB8DD /* Layout.c */; };
 		16C073871C889D15005EB8DD /* Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 16C073851C889D15005EB8DD /* Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -30,6 +31,8 @@
 		168E964D1C89AF6B00AEEC7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		168E964F1C89AF6B00AEEC7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		168E96531C89AF8800AEEC7F /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		16A1D4E01C930E3A001AEDD7 /* Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Demo-Bridging-Header.h"; sourceTree = "<group>"; };
+		16A1D4E11C930E3A001AEDD7 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		16C073791C889D09005EB8DD /* FlexboxLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FlexboxLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		16C0737C1C889D09005EB8DD /* FlexboxLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlexboxLayout.h; sourceTree = "<group>"; };
 		16C0737E1C889D0A005EB8DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -66,6 +69,8 @@
 				168E964C1C89AF6B00AEEC7F /* LaunchScreen.storyboard */,
 				168E964F1C89AF6B00AEEC7F /* Info.plist */,
 				165B2BE91C89E7B8009F81AB /* Extensions.swift */,
+				16A1D4E11C930E3A001AEDD7 /* main.m */,
+				16A1D4E01C930E3A001AEDD7 /* Demo-Bridging-Header.h */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -215,6 +220,7 @@
 			files = (
 				168E96461C89AF6B00AEEC7F /* ViewController.swift in Sources */,
 				165B2BEA1C89E7B8009F81AB /* Extensions.swift in Sources */,
+				16A1D4E21C930E3A001AEDD7 /* main.m in Sources */,
 				168E96441C89AF6B00AEEC7F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,21 +261,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.s.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
+				SWIFT_OBJC_BRIDGING_HEADER = "Demo/Demo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				};
 			name = Debug;
 		};
 		168E96521C89AF6B00AEEC7F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.s.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Demo/Demo-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -319,7 +331,8 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
+			GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				};
 			name = Debug;
 		};
 		16C073801C889D0A005EB8DD /* Release */ = {
@@ -379,7 +392,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
+			GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				};
 			name = Debug;
 		};
 		16C073831C889D0A005EB8DD /* Release */ = {

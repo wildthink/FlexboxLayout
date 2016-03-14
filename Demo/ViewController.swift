@@ -21,6 +21,8 @@ class ViewController: UIViewController {
     
     func prepareViewHierarchy() {
         
+        self.treeView?.removeFromSuperview()
+        
         let defaultMargin: Inset = (8.0, 8.0, 8.0, 8.0, 8.0, 8.0)
         let horizontal: (Void) -> (UIUserInterfaceSizeClass) = { return UIScreen.mainScreen().traitCollection.horizontalSizeClass };
         
@@ -60,13 +62,19 @@ class ViewController: UIViewController {
                         
                         UIView().configure({ (view, style) in
                             view.backgroundColor = UIColor.d
-                            style.flex = self.toggle ? 0.3 : 0.8
+                            style.flex = self.toggle ? 0.1 : 0.7
                             style.margin = defaultMargin
                         }),
                         
                         UIView().configure({ (view, style) in
                             view.backgroundColor = UIColor.e
-                            style.flex = self.toggle ? 0.7 : 0.2
+                            style.flex = self.toggle ? 0.6 : 0.1
+                            style.margin = defaultMargin
+                        }),
+                        
+                        UIView().configure({ (view, style) in
+                            view.backgroundColor = UIColor.d
+                            style.flex = 0.1
                             style.margin = defaultMargin
                         })
                     ]),
@@ -75,7 +83,7 @@ class ViewController: UIViewController {
                     view.backgroundColor = UIColor.f
                     view.setTitle("Press me", forState: .Normal)
                     view.addTarget(self, action: "didPressButton:", forControlEvents: .TouchUpInside)
-                    style.minDimensions = (100,50)
+                    style.minDimensions = horizontal() == .Compact ? (250,50) : (100,50)
                     style.justifyContent = .FlexEnd
                     style.alignSelf = .FlexEnd
                     style.margin = defaultMargin
@@ -107,8 +115,15 @@ class ViewController: UIViewController {
     }
     
     func render() {
-        self.treeView!.render(self.view.bounds.size)
-        self.treeView!.center = self.view.center
+        self.treeView!.render(self.view.bounds.size) {
+            self.treeView!.center = self.view.center
+        }
+    }
+    
+    func injected() {
+        
+        prepareViewHierarchy()
+        render()
     }
 
 }
