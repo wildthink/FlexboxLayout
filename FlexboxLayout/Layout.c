@@ -125,9 +125,6 @@ static void print_css_node_rec(
   indent(level);
   printf("{");
 
-  if (node->print) {
-    node->print(node->context);
-  }
 
   if (options & CSS_PRINT_LAYOUT) {
     printf("layout: {");

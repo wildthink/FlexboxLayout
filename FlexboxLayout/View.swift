@@ -43,6 +43,8 @@ extension Node {
 /// Support structure for the view
 private class InternalViewStore {
     
+
+    
     /// The configuration closure passed as argument
     var configureClosure: ((Void) -> (Void))?
 }
@@ -91,10 +93,7 @@ extension FlexboxView where Self: ViewType {
         render(self)
         
         //runs the flexbox engine
-        //TOFIX: 2 pass layout should be removed
-        for var i = 0; i < 2; i++ {
-            self.computeFlexboxLayout(boundingBox)
-        }
+        self.computeFlexboxLayout(boundingBox)
     }
     
     /// Internal store for this view
@@ -165,6 +164,8 @@ extension ViewType: FlexboxView {
     /// Recursively computes the layout of this view
     public func computeFlexboxLayout(boundingBox: CGSize) {
         
+        let startTime = CFAbsoluteTimeGetCurrent()
+        
         func prepare(view: ViewType) {
             view.prepareForFlexboxLayout()
             for subview in view.subviews.filter({ return $0.hasFlexNode }) {
@@ -181,6 +182,9 @@ extension ViewType: FlexboxView {
         }
         
         compute()
+        
+        let timeElapsed = (CFAbsoluteTimeGetCurrent() - startTime)*1000
+        print(String(format: "▮ flexbox-layout (%2f) ms.", arguments: [timeElapsed]))
     }
     
     private func recursivelyAddChildren() {
@@ -206,6 +210,8 @@ extension UILabel {
     ///  Computes the size of the label.
     ///- Note: The resulting size for a hidden label is zero.
     public override func prepareForFlexboxLayout() {
+        
+        // it simply calculates the required size for this label
         self.flexNode.measure = { (node, width, height) -> Dimension in
             if self.hidden { return (0,0) }
             let size = self.sizeThatFits(CGSize(width: CGFloat(width), height: CGFloat(height)))

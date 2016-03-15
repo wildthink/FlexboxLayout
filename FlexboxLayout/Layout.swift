@@ -580,6 +580,8 @@ public class Node {
         style.dimensions = (Undefined, Undefined)
         style.margin = (0, 0, 0, 0, 0, 0)
         style.padding = (0, 0, 0, 0, 0, 0)
+        style.border = (0, 0, 0, 0, 0, 0)
+        style.flex = 0
         self.layout.reset()
     }
     
