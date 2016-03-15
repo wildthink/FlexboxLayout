@@ -43,12 +43,17 @@ extension Node {
 /// Support structure for the view
 private class InternalViewStore {
     
-
+    /// The identifier for this view in the tree
+    var viewIdentifier: String?
+    
+    /// The traits for this view
+    var traits: [String] = [String]()
     
     /// The configuration closure passed as argument
     var configureClosure: ((Void) -> (Void))?
 }
 
+//MARK: Layout
 
 public protocol FlexboxView { }
 
@@ -90,10 +95,15 @@ extension FlexboxView where Self: ViewType {
             }
         }
         
+        let startTime = CFAbsoluteTimeGetCurrent()
+        
         render(self)
         
         //runs the flexbox engine
         self.computeFlexboxLayout(boundingBox)
+        
+        let timeElapsed = (CFAbsoluteTimeGetCurrent() - startTime)*1000
+        print(String(format: "▯ render (%2f) ms.", arguments: [timeElapsed]))
     }
     
     /// Internal store for this view
@@ -203,7 +213,87 @@ extension ViewType: FlexboxView {
     }
 }
 
+
+//MARK: Identifiers
+
+extension ViewType {
+    
+    /// A view can be marked with a string identifier, so that it can be retrieved afterwards
+    public var identifier: String? {
+        get { return self.internalStore.viewIdentifier }
+        set { self.internalStore.viewIdentifier = newValue }
+    }
+    
+    /// Simmetrically a view can be marked with traits
+    public var traits: [String] {
+        get { return self.internalStore.traits }
+        set { self.internalStore.traits = newValue }
+    }
+    
+    /// Recursively searches for the view with the given identifier
+    public func findViewWithIdentifier(identifier: String) -> ViewType? {
+        if self.identifier == identifier {
+            return self
+        }
+        for subview in self.subviews {
+            return subview.findViewWithIdentifier(identifier)
+        }
+        return nil
+    }
+    
+    /// Recursively searches for the views that have the traits passed as arguments
+    public func findViewsWithTraits(traits: [String]) -> [ViewType] {
+        
+        func find(view: ViewType, traits: [String], inout result: [ViewType]) {
+            if arrayContainsArray(view.traits, lookFor: traits) {
+                result.append(view)
+            }
+            for subview in subviews {
+                find(subview, traits: traits, result: &result)
+            }
+        }
+        
+        var result = [ViewType]()
+        find(self, traits: traits, result: &result)
+        return result
+    }
+    
+}
+
 #if os(iOS)
+
+public struct DeviceScreen {
+    
+    public static let HorizontalSizeClass: (Void) -> (UIUserInterfaceSizeClass) = {
+        return UIScreen.mainScreen().traitCollection.horizontalSizeClass
+    }
+    
+    public static let VerticalSizeClass: (Void) -> (UIUserInterfaceSizeClass) = {
+        return UIScreen.mainScreen().traitCollection.verticalSizeClass
+    }
+    
+    public static let LayoutDirection: (Void) -> (UIUserInterfaceLayoutDirection) = {
+        return UIApplication.sharedApplication().userInterfaceLayoutDirection
+    }
+    
+    public static let Idiom: (Void) -> (UIUserInterfaceIdiom) = {
+        return UIDevice.currentDevice().userInterfaceIdiom
+    }
+    
+    public static let ScreenSize: (Void) -> CGSize = {
+        let screen = UIScreen.mainScreen()
+        return screen.coordinateSpace.convertRect(screen.bounds, toCoordinateSpace: screen.fixedCoordinateSpace).size
+    }
+    
+    public static let ViewSize: (UIView) -> CGSize = {
+        return $0.bounds.size
+    }
+    
+    public static let ViewOrigin: (UIView) -> CGPoint = {
+        return $0.frame.origin
+    }
+    
+}
 
 extension UILabel {
     
@@ -230,6 +320,15 @@ private var __internalStoreHandle: UInt8 = 0
 
 private func clamp<T: Comparable>(value: T, lower: T, upper: T) -> T {
     return min(max(value, lower), upper)
+}
+
+func arrayContainsArray<S : SequenceType where S.Generator.Element : Equatable>(src:S, lookFor:S) -> Bool {
+    for v:S.Generator.Element in lookFor{
+        if src.contains(v) == false {
+            return false
+        }
+    }
+    return true
 }
 
 

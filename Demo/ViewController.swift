@@ -24,11 +24,10 @@ class ViewController: UIViewController {
         self.treeView?.removeFromSuperview()
         
         let defaultMargin: Inset = (8.0, 8.0, 8.0, 8.0, 8.0, 8.0)
-        let horizontal: (Void) -> (UIUserInterfaceSizeClass) = { return UIScreen.mainScreen().traitCollection.horizontalSizeClass };
         
         self.treeView = UIView().configure({ (view, style) in
             view.backgroundColor = UIColor.a
-            style.minDimensions = (horizontal() == .Regular ? 480 : 320, 420)
+            style.minDimensions = (DeviceScreen.HorizontalSizeClass() == .Regular ? 480 : 320, 420)
             style.flex = 1
             style.alignSelf = .Stretch
             
@@ -37,7 +36,7 @@ class ViewController: UIViewController {
             UIView().configure({ (view, style) in
                 style.flex = 1
                 style.alignSelf = .Stretch
-                style.flexDirection = horizontal() == .Regular ? .Row : .Column
+                style.flexDirection = DeviceScreen.HorizontalSizeClass() == .Regular ? .Row : .Column
 
             }, children: [
             
@@ -56,7 +55,7 @@ class ViewController: UIViewController {
                     style.flexDirection = .Row
                     style.flex = 1
                     style.margin = defaultMargin
-                    style.flexDirection = horizontal() == .Regular ? .Column : .Row
+                    style.flexDirection = DeviceScreen.HorizontalSizeClass() == .Regular ? .Column : .Row
 
                     }, children: [
                         
@@ -83,7 +82,7 @@ class ViewController: UIViewController {
                     view.backgroundColor = UIColor.f
                     view.setTitle("Press me", forState: .Normal)
                     view.addTarget(self, action: "didPressButton:", forControlEvents: .TouchUpInside)
-                    style.minDimensions = horizontal() == .Compact ? (250,50) : (100,50)
+                    style.minDimensions = DeviceScreen.HorizontalSizeClass() == .Compact ? (250,50) : (100,50)
                     style.justifyContent = .FlexEnd
                     style.alignSelf = .FlexEnd
                     style.margin = defaultMargin
