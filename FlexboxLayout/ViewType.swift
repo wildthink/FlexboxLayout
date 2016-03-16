@@ -81,26 +81,34 @@ extension FlexboxView where Self: ViewType {
         return self
     }
     
-    /// Re-configure the view and re-compute the flexbox layout
-    public func render(boundingBox: CGSize) {
+    /// Recursively apply the configuration closure to this view tree
+    public func configure() {
         
-        func render(view: ViewType) {
+        func configure(view: ViewType) {
             
             //runs the configure closure
             view.internalStore.configureClosure?()
             
             //calls it recursively on the subviews
             for subview in view.subviews {
-                render(subview)
+                configure(subview)
             }
         }
         
+        //the view is configured before the layout
+        configure(self)
+    }
+    
+    /// Re-configure the view and re-compute the flexbox layout
+    public func render(boundingBox: CGSize) {
+    
         let startTime = CFAbsoluteTimeGetCurrent()
-        
-        render(self)
-        
+    
+        //configure the view tree
+        self.configure()
+
         //runs the flexbox engine
-        self.computeFlexboxLayout(boundingBox)
+        self.layout(boundingBox)
         
         let timeElapsed = (CFAbsoluteTimeGetCurrent() - startTime)*1000
         print(String(format: "▯ render (%2f) ms.", arguments: [timeElapsed]))
@@ -138,7 +146,7 @@ extension ViewType: FlexboxView {
                 
                 //default measure bloc
                 newNode.measure = { (node, width, height) -> Dimension in
-                    if self.hidden {
+                    if self.hidden || self.alpha < CGFloat(FLT_EPSILON) {
                         return (0,0) //no size for an hidden element
                     }
                     
@@ -172,7 +180,7 @@ extension ViewType: FlexboxView {
     }
     
     /// Recursively computes the layout of this view
-    public func computeFlexboxLayout(boundingBox: CGSize) {
+    public func layout(boundingBox: CGSize) {
         
         let startTime = CFAbsoluteTimeGetCurrent()
         
@@ -260,58 +268,6 @@ extension ViewType {
     
 }
 
-#if os(iOS)
-
-public struct DeviceScreen {
-    
-    public static let HorizontalSizeClass: (Void) -> (UIUserInterfaceSizeClass) = {
-        return UIScreen.mainScreen().traitCollection.horizontalSizeClass
-    }
-    
-    public static let VerticalSizeClass: (Void) -> (UIUserInterfaceSizeClass) = {
-        return UIScreen.mainScreen().traitCollection.verticalSizeClass
-    }
-    
-    public static let LayoutDirection: (Void) -> (UIUserInterfaceLayoutDirection) = {
-        return UIApplication.sharedApplication().userInterfaceLayoutDirection
-    }
-    
-    public static let Idiom: (Void) -> (UIUserInterfaceIdiom) = {
-        return UIDevice.currentDevice().userInterfaceIdiom
-    }
-    
-    public static let ScreenSize: (Void) -> CGSize = {
-        let screen = UIScreen.mainScreen()
-        return screen.coordinateSpace.convertRect(screen.bounds, toCoordinateSpace: screen.fixedCoordinateSpace).size
-    }
-    
-    public static let ViewSize: (UIView) -> CGSize = {
-        return $0.bounds.size
-    }
-    
-    public static let ViewOrigin: (UIView) -> CGPoint = {
-        return $0.frame.origin
-    }
-    
-}
-
-extension UILabel {
-    
-    ///  Computes the size of the label.
-    ///- Note: The resulting size for a hidden label is zero.
-    public override func prepareForFlexboxLayout() {
-        
-        // it simply calculates the required size for this label
-        self.flexNode.measure = { (node, width, height) -> Dimension in
-            if self.hidden { return (0,0) }
-            let size = self.sizeThatFits(CGSize(width: CGFloat(width), height: CGFloat(height)))
-            return (Float(size.width), Float(size.height))
-        }
-    }
-}
-    
-    
-#endif
 
 //MARK: Utilities
 
