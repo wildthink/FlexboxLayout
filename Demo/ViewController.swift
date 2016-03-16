@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         
         self.treeView = UIView().configure({ (view, style) in
             view.backgroundColor = UIColor.a
-            style.minDimensions = (DeviceScreen.HorizontalSizeClass() == .Regular ? 480 : 320, 420)
+            style.minDimensions = DeviceScreen.ScreenSize() - Dim(16.0, 32.0)
             style.flex = 1
             style.alignSelf = .Stretch
             
@@ -40,15 +40,64 @@ class ViewController: UIViewController {
 
             }, children: [
             
+                //cell
                 UIView().configure({ (view, style) in
-                    view.backgroundColor = UIColor.b
-                    view.hidden = self.toggle
-                    style.minDimensions = (150,50)
+                    view.backgroundColor = UIColor.whiteColor()
+                    view.alpha = self.toggle || DeviceScreen.HorizontalSizeClass() == .Regular ? 0 : 1
+                    style.minDimensions = (150,68)
                     style.justifyContent = .Center
                     style.alignSelf = .Stretch
                     style.margin = defaultMargin
-                }),
+                    style.flexDirection = .Row
+                    
+                }, children: [
+                    
+                    UIView().configure({ (view, style) in
+                        view.backgroundColor = UIColor.g
+                        view.layer.cornerRadius = 27.0
+                        style.dimensions = (54, 54)
+                        style.margin = defaultMargin
+                        style.alignSelf = .Center
+                        style.justifyContent = .FlexStart
+                    }),
+                    
+                    UIView().configure({ (view, style) in
+                        view.backgroundColor = UIColor.a
+                        style.minDimensions = (100, 54)
+                        style.alignSelf = .Center
+                        style.flex = 0.8
+                    }, children: [
+                        UILabel().configure({ (view, style) in
+                            view.text = "I'm a cell title!"
+                            view.textAlignment = .Center
+                            view.font = UIFont.systemFontOfSize(18, weight: UIFontWeightBold)
+                            style.alignSelf = .FlexStart
+                            style.margin = (0, 4.0, 0, 0, 8.0, 0)
+                        }),
+                        
+                        UILabel().configure({ (view, style) in
+                            view.text = "We're going to disappear"
+                            view.textAlignment = .Center
+                            view.font = UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+                            style.alignSelf = .FlexStart
+                            style.margin = (0, 6.0, 0, 0, 8.0, 0)
+                        })
+                        
+                    ]),
+                    
+                    UILabel().configure({ (view, style) in
+                        view.backgroundColor = UIColor.f
+                        view.text = "88:88"
+                        view.textColor = UIColor.a
+                        view.textAlignment = .Center
+                        style.minDimensions = (54, 54)
+                        style.alignSelf = .Center
+                        style.flex = 0.2
+                        style.margin = defaultMargin
+                    })
+                ]),
                 
+                //green box
                 UIView().configure({ (view, style) in
                     view.backgroundColor = UIColor.c
                     style.minDimensions = (50,50)
@@ -78,6 +127,7 @@ class ViewController: UIViewController {
                         })
                     ]),
                 
+                //button
                 UIButton().configure({ (view, style) in
                     view.backgroundColor = UIColor.f
                     view.setTitle("Press me", forState: .Normal)
@@ -90,10 +140,12 @@ class ViewController: UIViewController {
                 
             ]),
             
+            //label
             UILabel().configure({ (label, style) -> Void in
                 label.backgroundColor = UIColor.g
                 label.numberOfLines = 0
-                label.text = "Lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+                label.text = randomString(random() % 100)
+                label.textColor = UIColor.a
                 style.margin = defaultMargin
             })
         ])
@@ -104,19 +156,31 @@ class ViewController: UIViewController {
     dynamic func didPressButton(sender: UIButton) {
         self.toggle = !self.toggle
         
-        UIView.animateWithDuration(1) { () -> Void in
-            self.render()
+        self.treeView?.configure()
+        UIView.animateWithDuration(0.1) { () -> Void in
+            self.layout()
         }
     }
 
     override func viewDidLayoutSubviews() {
-        render()
+        self.render()
+    }
+    
+    func layout() {
+        self.treeView?.layout(self.view.bounds.size)
+        self.treeView?.center = self.view.center
     }
     
     func render() {
-        self.treeView!.render(self.view.bounds.size)
-        self.treeView!.center = self.view.center
+        self.treeView?.configure()
+        self.layout()
     }
 
+    func injected() {
+        prepareViewHierarchy()
+        render()
+    }
+    
 }
+
 

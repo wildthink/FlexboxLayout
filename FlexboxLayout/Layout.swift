@@ -621,6 +621,22 @@ public class Node {
 
 }
 
+//MARK: Operators
+
+public func Dim(width: Float, _ height: Float) -> Dimension {
+    return (width, height)
+}
+
+public func +(left: Dimension, right: Dimension) -> Dimension {
+    return (left.width + right.width, left.width + right.width)
+}
+
+public func -(left: Dimension, right: Dimension) -> Dimension {
+    return (left.width - right.width, left.width - right.width)
+}
+
+
+
 
 
 

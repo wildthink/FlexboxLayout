@@ -51,7 +51,10 @@ extension UILabel {
         self.flexNode.measure = { (node, width, height) -> Dimension in
             if self.hidden { return (0,0) }
             let size = self.sizeThatFits(CGSize(width: CGFloat(width), height: CGFloat(height)))
-            return (Float(size.width), Float(size.height))
+            
+            let w: Float = clamp(Float(size.width), lower: node.style.minDimensions.width, upper: min(width, node.style.maxDimensions.width))
+            let h: Float = clamp(Float(size.height), lower: node.style.minDimensions.height, upper: min(height, node.style.maxDimensions.height))
+            return (w, h)
         }
     }
 }
