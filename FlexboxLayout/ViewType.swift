@@ -206,7 +206,7 @@ public prefix func ~(number: CGFloat) -> Float {
 }
 
 public prefix func ~(size: CGSize) -> Dimension {
-    return (width: Float(size.width), height: Float(size.width))
+    return (width: Float(size.width), height: Float(size.height))
 }
 
 public prefix func ~(insets: EdgeInsets) -> Inset {

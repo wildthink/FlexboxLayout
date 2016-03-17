@@ -324,7 +324,6 @@ public typealias Inset = (left: Float, top: Float, right: Float, bottom: Float, 
 public typealias Position = (left: Float, top: Float, right: Float, bottom: Float)
 
 public let Undefined = Float(CSS_NAN())
-public let Limit = 4096
 
 //MARK: Layout
 public class Layout {
@@ -575,7 +574,7 @@ public class Node {
         style.flexWrap = .NoWrap
         style.flexDirection = .Column
         style.positionType = .Relative
-        style.maxDimensions = (Float(Limit), Float(Limit))
+        style.maxDimensions = (FLT_MAX, FLT_MAX)
         style.minDimensions = (0, 0)
         style.dimensions = (Undefined, Undefined)
         style.margin = (0, 0, 0, 0, 0, 0)
