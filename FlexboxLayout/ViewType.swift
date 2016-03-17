@@ -12,12 +12,13 @@ import Foundation
     import UIKit
     public typealias ViewType = UIView
     public typealias LabelType = UILabel
+    public typealias EdgeInsets = UIEdgeInsets
 
 #else
     import AppKit
     public typealias ViewType = NSView
     public typealias LabelType = NSTextView
-
+    public typealias EdgeInsets = NSEdgeInsets
 #endif
 
 extension Node {
@@ -198,5 +199,18 @@ private var __flexNodeHandle: UInt8 = 0
     return min(max(value, lower), upper)
 }
 
+prefix operator ~ {}
+
+public prefix func ~(number: CGFloat) -> Float {
+    return Float(number)
+}
+
+public prefix func ~(size: CGSize) -> Dimension {
+    return (width: Float(size.width), height: Float(size.width))
+}
+
+public prefix func ~(insets: EdgeInsets) -> Inset {
+    return (left: Float(insets.left), top: Float(insets.top), right: Float(insets.right), bottom: Float(insets.bottom), start: Float(insets.left), end: Float(insets.right))
+}
 
 
