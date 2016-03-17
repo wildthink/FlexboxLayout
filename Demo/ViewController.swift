@@ -44,7 +44,6 @@ class ViewController: UIViewController {
                 UIView().configure({ (view, style) in
                     view.backgroundColor = UIColor.whiteColor()
                     view.alpha = self.toggle || DeviceScreen.HorizontalSizeClass() == .Regular ? 0 : 1
-                    style.minDimensions = (150,68)
                     style.justifyContent = .Center
                     style.alignSelf = .Stretch
                     style.margin = defaultMargin

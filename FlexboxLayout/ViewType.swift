@@ -129,9 +129,17 @@ extension ViewType: FlexboxView {
                         size = self.sizeThatFits(CGSize(width:CGFloat(width), height:CGFloat(height)))
                     }
                     
-                    let width: Float = clamp(Float(size.width), lower: node.style.minDimensions.width, upper: width)
-                    let height: Float = clamp(Float(size.height), lower: node.style.minDimensions.height, upper: height)
-                    return (width, height)
+                    var w: Float = width
+                    if node.style.minDimensions.width.isNormal {
+                        w = clamp(Float(size.width), lower: node.style.minDimensions.width, upper: width)
+                    }
+                    
+                    var h: Float = height
+                    if node.style.minDimensions.height.isNormal {
+                        h = clamp(Float(size.height), lower: node.style.minDimensions.height, upper: height)
+                    }
+                    
+                    return (w, h)
                 }
                 
                 objc_setAssociatedObject(self, &__flexNodeHandle, newNode, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
