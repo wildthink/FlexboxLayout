@@ -324,7 +324,7 @@ public typealias Inset = (left: Float, top: Float, right: Float, bottom: Float, 
 public typealias Position = (left: Float, top: Float, right: Float, bottom: Float)
 
 public let Undefined = Float(CSS_NAN())
-public let Limit = 960
+public let Limit = 4096
 
 //MARK: Layout
 public class Layout {
