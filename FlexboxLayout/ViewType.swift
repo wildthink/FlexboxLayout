@@ -41,6 +41,8 @@ extension Node {
     }
 }
 
+//MARK: Layout
+
 public protocol FlexboxView { }
 
 extension FlexboxView where Self: ViewType {
@@ -201,9 +203,61 @@ extension ViewType: FlexboxView {
     }
 }
 
+//MARK: Internals
+
+/// Support structure for the view
+internal class InternalViewStore {
+    
+    /// The configuration closure passed as argument
+    var configureClosure: ((Void) -> (Void))?
+}
+
+extension ViewType {
+    
+    /// Internal store for this view
+    internal var internalStore: InternalViewStore {
+        get {
+            guard let store = objc_getAssociatedObject(self, &__internalStoreHandle) as? InternalViewStore else {
+                
+                //lazily creates the node
+                let store = InternalViewStore()
+                objc_setAssociatedObject(self, &__internalStoreHandle, store, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                return store
+            }
+            return store
+        }
+    }
+    
+}
+
+private var __internalStoreHandle: UInt8 = 0
 private var __flexNodeHandle: UInt8 = 0
 
- func clamp<T: Comparable>(value: T, lower: T, upper: T) -> T {
+#if os(iOS)
+    
+    extension UILabel {
+        
+        ///  Computes the size of the label.
+        ///- Note: The resulting size for a hidden label is zero.
+        public override func beforeLayout() {
+            
+            // it simply calculates the required size for this label
+            self.flexNode.measure = { (node, width, height) -> Dimension in
+                if self.hidden { return (0,0) }
+                let size = self.sizeThatFits(CGSize(width: CGFloat(width), height: CGFloat(height)))
+                
+                let w: Float = clamp(Float(size.width), lower: node.style.minDimensions.width, upper: min(width, node.style.maxDimensions.width))
+                let h: Float = clamp(Float(size.height), lower: node.style.minDimensions.height, upper: min(height, node.style.maxDimensions.height))
+                return (w, h)
+            }
+        }
+    }
+    
+#endif
+
+//MARK: Utils
+
+func clamp<T: Comparable>(value: T, lower: T, upper: T) -> T {
     return min(max(value, lower), upper)
 }
 
@@ -220,5 +274,4 @@ public prefix func ~(size: CGSize) -> Dimension {
 public prefix func ~(insets: EdgeInsets) -> Inset {
     return (left: Float(insets.left), top: Float(insets.top), right: Float(insets.right), bottom: Float(insets.bottom), start: Float(insets.left), end: Float(insets.right))
 }
-
 

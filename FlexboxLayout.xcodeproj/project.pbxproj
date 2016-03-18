@@ -16,8 +16,6 @@
 		168E96571C89B32F00AEEC7F /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C073881C889DB9005EB8DD /* Layout.swift */; };
 		168E96581C89B32F00AEEC7F /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168E96531C89AF8800AEEC7F /* ViewType.swift */; };
 		16A1D4E21C930E3A001AEDD7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A1D4E11C930E3A001AEDD7 /* main.m */; };
-		16B0DF2D1C99477A007382BC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B0DF2C1C99477A007382BC /* Extensions.swift */; };
-		16B0DF2F1C9947B3007382BC /* Internals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B0DF2E1C9947B3007382BC /* Internals.swift */; };
 		16C0737D1C889D09005EB8DD /* FlexboxLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 16C0737C1C889D09005EB8DD /* FlexboxLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		16C073861C889D15005EB8DD /* Layout.c in Sources */ = {isa = PBXBuildFile; fileRef = 16C073841C889D15005EB8DD /* Layout.c */; };
 		16C073871C889D15005EB8DD /* Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 16C073851C889D15005EB8DD /* Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,8 +33,6 @@
 		168E96531C89AF8800AEEC7F /* ViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
 		16A1D4E01C930E3A001AEDD7 /* Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Demo-Bridging-Header.h"; sourceTree = "<group>"; };
 		16A1D4E11C930E3A001AEDD7 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		16B0DF2C1C99477A007382BC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		16B0DF2E1C9947B3007382BC /* Internals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Internals.swift; sourceTree = "<group>"; };
 		16C073791C889D09005EB8DD /* FlexboxLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FlexboxLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		16C0737C1C889D09005EB8DD /* FlexboxLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlexboxLayout.h; sourceTree = "<group>"; };
 		16C0737E1C889D0A005EB8DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -106,8 +102,6 @@
 				16C073851C889D15005EB8DD /* Layout.h */,
 				16C073881C889DB9005EB8DD /* Layout.swift */,
 				168E96531C89AF8800AEEC7F /* ViewType.swift */,
-				16B0DF2C1C99477A007382BC /* Extensions.swift */,
-				16B0DF2E1C9947B3007382BC /* Internals.swift */,
 			);
 			path = FlexboxLayout;
 			sourceTree = "<group>";
@@ -235,11 +229,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16B0DF2F1C9947B3007382BC /* Internals.swift in Sources */,
 				16C073861C889D15005EB8DD /* Layout.c in Sources */,
 				168E96571C89B32F00AEEC7F /* Layout.swift in Sources */,
 				168E96581C89B32F00AEEC7F /* ViewType.swift in Sources */,
-				16B0DF2D1C99477A007382BC /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

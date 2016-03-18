@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FlexboxLayout
 
 extension UIView {
     convenience init(color: UIColor) {
@@ -69,4 +70,35 @@ func randomString(length: Int) -> String {
     }
     
     return randomString
+}
+
+public struct DeviceScreen {
+    
+    public static let HorizontalSizeClass: (Void) -> (UIUserInterfaceSizeClass) = {
+        return UIScreen.mainScreen().traitCollection.horizontalSizeClass
+    }
+    
+    public static let VerticalSizeClass: (Void) -> (UIUserInterfaceSizeClass) = {
+        return UIScreen.mainScreen().traitCollection.verticalSizeClass
+    }
+    
+    public static let LayoutDirection: (Void) -> (UIUserInterfaceLayoutDirection) = {
+        return UIApplication.sharedApplication().userInterfaceLayoutDirection
+    }
+    
+    public static let Idiom: (Void) -> (UIUserInterfaceIdiom) = {
+        return UIDevice.currentDevice().userInterfaceIdiom
+    }
+    
+    public static let ScreenSize: (Void) -> FlexboxLayout.Dimension = {
+        let screen = UIScreen.mainScreen()
+        let size = screen.coordinateSpace.convertRect(screen.bounds, toCoordinateSpace: screen.fixedCoordinateSpace).size
+        return (Float(size.width), Float(size.height))
+    }
+    
+    public static let ViewSize: (UIView) -> FlexboxLayout.Dimension = {
+        let size = $0.bounds.size
+        return (Float(size.width), Float(size.height))
+    }
+    
 }
