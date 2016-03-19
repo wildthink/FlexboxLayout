@@ -7,16 +7,14 @@
 Port of Facebook's [css-layout](facebook css layout) to Swift + *UIView* extension.
 
 
-*TODO: Documentation*
-
 ![GitHub Logo](doc/cell.jpg)
-
+TL;DR
 This layout and style is expressed in code in the following declarative fashion:
 
 
 ```swift
  
-UIView().configure({
+let view = UIView().configure({
     $0.backgroundColor = UIColor.whiteColor()
     $0.style.justifyContent = .Center
     $0.style.alignSelf = .Stretch
@@ -25,7 +23,7 @@ UIView().configure({
     }, children: [
         
         UIView().configure({
-            $0.backgroundColor = UIColor.g
+            $0.backgroundColor = UIColor.blueColor()
             $0.layer.cornerRadius = 27.0
             $0.style.dimensions = (54, 54)
             $0.style.margin = defaultMargin
@@ -34,7 +32,7 @@ UIView().configure({
         }),
         
         UIView().configure({
-            $0.backgroundColor = UIColor.a
+            $0.backgroundColor = UIColor.grayColor()
             $0.style.minDimensions = (100, 54)
             $0.style.alignSelf = .Center
             $0.style.flex = 0.8
@@ -57,7 +55,7 @@ UIView().configure({
             ]),
         
         UILabel().configure({
-            $0.backgroundColor = UIColor.f
+            $0.backgroundColor = UIColor.redColor()
             $0.text = "88:88"
             $0.textColor = UIColor.a
             $0.textAlignment = .Center
@@ -69,6 +67,13 @@ UIView().configure({
     ])
 })
 
+view.render()
+
 ```
 
-Checkout the Demo project for further info.
+The  `configure` function stores the configuration closure for each view and this is recursively re-applied whenever the `render` function is called on the root view.
+
+This allows you to have a React-inspired design of your view logic.
+
+
+ 
