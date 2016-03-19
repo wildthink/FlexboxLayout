@@ -9,7 +9,7 @@ Port of Facebook's [css-layout](facebook css layout) to Swift + *UIView* extensi
 
 *TODO: Documentation*
 
-![GitHub Logo](doc/animation.gif)
+![GitHub Logo](doc/cell.jpg)
 
 This layout and style is expressed in code in the following declarative fashion:
 
