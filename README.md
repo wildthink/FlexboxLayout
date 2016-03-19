@@ -40,14 +40,12 @@ let view = UIView().configure({
             
                 UILabel().configure({
                     $0.text = "TITLE"
-                    $0.textAlignment = .Center
                     $0.style.alignSelf = .FlexStart
                     $0.style.margin = (0.0, 4.0, 0.0, 0.0, 8.0, 0.0)
                 }),
                 
                 UILabel().configure({
                     $0.text = "SUBTITLE"
-                    $0.textAlignment = .Center
                     $0.style.alignSelf = .FlexStart
                     $0.style.margin = (0.0, 6.0, 0.0, 0.0, 8.0, 0.0)
                 })
