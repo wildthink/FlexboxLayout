@@ -49,13 +49,13 @@ extension FlexboxView where Self: ViewType {
     
     /// Configure the view and its flexbox style.
     ///- Note: The configuration closure is stored away and called again in the render function
-    public func configure(closure: ((Self, Style) -> Void), children: [ViewType]? = nil) -> Self {
+    public func configure(closure: ((Self) -> Void), children: [ViewType]? = nil) -> Self {
         
         //runs the configuration closure and stores it away
-        closure(self, self.flexNode.style)
+        closure(self)
         self.internalStore.configureClosure = { [weak self] in
             if let _self = self {
-                closure(_self, _self.flexNode.style)
+                closure(_self)
             }
         }
         
@@ -128,18 +128,12 @@ extension ViewType: FlexboxView {
                     var size = self.intrinsicContentSize()
                     
                     if size == CGSize.zero {
-                        size = self.sizeThatFits(CGSize(width:CGFloat(width), height:CGFloat(height)))
+                        size = self.sizeThatFits(CGSize(width: CGFloat(width), height: CGFloat(height)))
                     }
                     
-                    var w: Float = width
-                    if node.style.minDimensions.width.isNormal {
-                        w = clamp(Float(size.width), lower: node.style.minDimensions.width, upper: width)
-                    }
-                    
-                    var h: Float = height
-                    if node.style.minDimensions.height.isNormal {
-                        h = clamp(Float(size.height), lower: node.style.minDimensions.height, upper: height)
-                    }
+                    var w: Float = width, h = height
+                    if node.style.minDimensions.width.isNormal { w = clamp(~size.width, lower: node.style.minDimensions.width, upper: width) }
+                    if node.style.minDimensions.height.isNormal { h = clamp(~size.height, lower: node.style.minDimensions.height, upper: height) }
                     
                     return (w, h)
                 }
@@ -156,16 +150,19 @@ extension ViewType: FlexboxView {
         }
     }
     
-    ///Left for subclasses to implement some specific logic prior to the layout
+    /// The style for this flexbox node
+    public var style: Style {
+        return self.flexNode.style
+    }
+    
+    /// Left for subclasses to implement some specific logic prior to the layout
     public func beforeLayout() {
         ///implement this in your subview
     }
     
     /// Recursively computes the layout of this view
     public func layout(boundingBox: CGSize) {
-        
-        let startTime = CFAbsoluteTimeGetCurrent()
-        
+                
         func prepare(view: ViewType) {
             view.beforeLayout()
             for subview in view.subviews.filter({ return $0.hasFlexNode }) {
@@ -177,14 +174,11 @@ extension ViewType: FlexboxView {
         
         func compute() {
             self.recursivelyAddChildren()
-            self.flexNode.layout(Float(boundingBox.width), maxHeight: Float(boundingBox.height), parentDirection: .Inherit)
+            self.flexNode.layout(~boundingBox.width, maxHeight: ~boundingBox.height, parentDirection: .Inherit)
             self.flexNode.apply(self)
         }
         
         compute()
-        
-        let timeElapsed = (CFAbsoluteTimeGetCurrent() - startTime)*1000
-        print(String(format: "▮ flexbox-layout (%2f) ms.", arguments: [timeElapsed]))
     }
     
     private func recursivelyAddChildren() {
@@ -244,10 +238,10 @@ private var __flexNodeHandle: UInt8 = 0
             // it simply calculates the required size for this label
             self.flexNode.measure = { (node, width, height) -> Dimension in
                 if self.hidden { return (0,0) }
-                let size = self.sizeThatFits(CGSize(width: CGFloat(width), height: CGFloat(height)))
                 
-                let w: Float = clamp(Float(size.width), lower: node.style.minDimensions.width, upper: min(width, node.style.maxDimensions.width))
-                let h: Float = clamp(Float(size.height), lower: node.style.minDimensions.height, upper: min(height, node.style.maxDimensions.height))
+                let size = self.sizeThatFits(CGSize(width: CGFloat(width), height: CGFloat(height)))
+                let w: Float = clamp(~size.width, lower: node.style.minDimensions.width, upper: min(width, node.style.maxDimensions.width))
+                let h: Float = clamp(~size.height, lower: node.style.minDimensions.height, upper: min(height, node.style.maxDimensions.height))
                 return (w, h)
             }
         }
@@ -268,10 +262,10 @@ public prefix func ~(number: CGFloat) -> Float {
 }
 
 public prefix func ~(size: CGSize) -> Dimension {
-    return (width: Float(size.width), height: Float(size.height))
+    return (width: ~size.width, height: ~size.height)
 }
 
 public prefix func ~(insets: EdgeInsets) -> Inset {
-    return (left: Float(insets.left), top: Float(insets.top), right: Float(insets.right), bottom: Float(insets.bottom), start: Float(insets.left), end: Float(insets.right))
+    return (left: ~insets.left, top: ~insets.top, right: ~insets.right, bottom: ~insets.bottom, start: ~insets.left, end: ~insets.right)
 }
 
