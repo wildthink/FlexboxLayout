@@ -71,7 +71,7 @@ view.render()
 
 ```
 
-The  `configure` function stores the configuration closure for each view and this is recursively re-applied whenever the `render` function is called on the root view.
+The  `configure` function stores the configuration closure for each view and these are recursively re-applied whenever the `render` function is called on the root view.
 
 This allows you to have a React-inspired design of your view logic.
 
