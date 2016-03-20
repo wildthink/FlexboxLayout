@@ -482,7 +482,7 @@ public class Style {
         set { node.target.style.minDimensions = newValue }
     }
     
-    public var maxDimensions :Dimension {
+    public var maxDimensions: Dimension {
         get { return target.maxDimensions }
         set { node.target.style.maxDimensions = newValue }
     }
