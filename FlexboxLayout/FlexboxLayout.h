@@ -5,10 +5,11 @@
 //  Created by Alex Usbergo on 03/03/16.
 //  Copyright © 2016 Alex Usbergo. All rights reserved.
 //
-
-//#import <UIKit/UIKit.h>
+#if __IPHONE_OS_VERSION_MAX_ALLOWED
+#import <UIKit/UIKit.h>
+#else
 #import <Foundation/Foundation.h>
-#import "Layout.h"
+#endif
 
 //! Project version number for FlexboxLayout.
 FOUNDATION_EXPORT double FlexboxLayoutVersionNumber;

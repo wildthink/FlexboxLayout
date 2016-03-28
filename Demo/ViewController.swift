@@ -32,8 +32,7 @@ class ViewController: UIViewController {
             $0.style.alignSelf = .Stretch
             $0.style.margin = defaultMargin
             $0.style.flexDirection = .Row
-            $0.style.minDimensions.width = 320
-
+            $0.style.maxDimensions.width = ~(self.view.bounds.width - 40)
             }, children: [
                 
                 UIView().configure({
@@ -41,7 +40,7 @@ class ViewController: UIViewController {
                     $0.layer.cornerRadius = 27.0
                     $0.style.dimensions = (54, 54)
                     $0.style.margin = defaultMargin
-                    $0.style.alignSelf = .Center
+                    $0.style.alignSelf = .FlexStart
                     $0.style.justifyContent = .FlexStart
                 }),
                 
@@ -51,20 +50,22 @@ class ViewController: UIViewController {
                     $0.style.flex = 0.8
                     }, children: [
                         UILabel().configure({
-                            $0.text = "TITLE"
+                            $0.text = "Lorem Ipsum"
                             $0.textAlignment = .Center
-                            $0.font = UIFont.systemFontOfSize(18, weight: UIFontWeightBold)
+                            $0.font = UIFont.systemFontOfSize(16, weight: UIFontWeightBold)
                             $0.style.alignSelf = .FlexStart
                             $0.style.margin = (0, 4.0, 0, 0, 8.0, 0)
                         }),
                         
                         UILabel().configure({
-                            $0.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                            $0.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur adipisci velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur adipisci velit."
                             $0.textAlignment = .Left
-                            $0.font = UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+                            $0.font = UIFont.systemFontOfSize(12, weight: UIFontWeightLight)
                             $0.numberOfLines = 0
                             $0.style.alignSelf = .FlexStart
                             $0.style.margin = (0, 6.0, 0, 0, 8.0, 0)
+                            $0.style.maxDimensions.height = 96
+                            $0.style.margin = defaultMargin
                         })
                         
                     ]),
@@ -74,8 +75,9 @@ class ViewController: UIViewController {
                     $0.text = "88:88"
                     $0.textColor = UIColor.a
                     $0.textAlignment = .Center
+                    $0.font = UIFont.systemFontOfSize(12, weight: UIFontWeightLight)
                     $0.style.minDimensions = (54, 54)
-                    $0.style.alignSelf = .Center
+                    $0.style.alignSelf = .FlexEnd
                     $0.style.flex = 0.2
                     $0.style.margin = defaultMargin
                 })

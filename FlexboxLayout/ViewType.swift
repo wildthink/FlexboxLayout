@@ -98,15 +98,24 @@ extension ViewType: FlexboxView {
                 //lazily creates the node
                 let newNode = Node()
                 
-                //default measure bloc
                 newNode.measure = { (node, width, height) -> Dimension in
                     
+<<<<<<< HEAD
 #if os(iOS)
                     if self.hidden || self.alpha < CGFloat(FLT_EPSILON) {
+=======
+                    var opacityIsZero = false
+                    #if os(iOS)
+                        opacityIsZero = self.alpha < CGFloat(FLT_EPSILON)
+                    #endif
+                    
+                    if self.hidden || opacityIsZero {
+>>>>>>> 273c5d3cb6cd557b877cc4120bc990e1807230b1
                         return (0,0) //no size for an hidden element
                     }
                     
                     //get the intrinsic size of the element if applicable
+<<<<<<< HEAD
                     var size = self.sizeThatFits(CGSize(width: CGFloat(width), height: CGFloat(height)))
 
                     if size.isZero {
@@ -123,15 +132,57 @@ extension ViewType: FlexboxView {
                         size = control.bounds.size
                     }
 #endif
+=======
+                    self.frame = CGRect.zero
+                    var size = CGSize.zero
+
+                    #if os(iOS)
+                        size = self.sizeThatFits(CGSize(width: CGFloat(width), height: CGFloat(height)))
+                        if size.isZero {
+                            size = self.intrinsicContentSize()
+                        }
+                    #else
+                        if let control = self as? NSControl {
+                            size = CGSize(width: -1, height: -1)
+                            control.sizeToFit()
+                            size = control.bounds.size
+                        }
+                    #endif
+>>>>>>> 273c5d3cb6cd557b877cc4120bc990e1807230b1
                     
                     var w: Float = width
                     var h: Float = height
-                    if node.style.minDimensions.width.isNormal || size.width > CGFloat(FLT_EPSILON) {
-                        w = clamp(~size.width, lower: node.style.minDimensions.width, upper: min(width, node.style.maxDimensions.width))
+
+                    if size.width > CGFloat(FLT_EPSILON) {
+                        w = ~size.width
+                        let lower = ~zeroIfNan(node.style.minDimensions.width)
+                        let upper = ~min(maxIfNaN(width), maxIfNaN(node.style.maxDimensions.width))
+                        w = w < lower ? lower : w
+                        w = w > upper ? upper : w
                     }
                     
-                    if node.style.minDimensions.height.isNormal || size.height > CGFloat(FLT_EPSILON) {
-                        h = clamp(~size.height, lower: node.style.minDimensions.height, upper: min(height, node.style.maxDimensions.height))
+                    if size.height > CGFloat(FLT_EPSILON) {
+                        h = ~size.height
+                        let lower = ~zeroIfNan(node.style.minDimensions.height)
+                        let upper = ~min(maxIfNaN(height), maxIfNaN(node.style.maxDimensions.height))
+                        h = h < lower ? lower : h
+                        h = h > upper ? upper : h
+                    }
+                    
+                    if !w.isUndefined && node.style.maxDimensions.width.isUndefined {
+                        w = node.style.maxDimensions.width
+                    }
+                    
+                    if !h.isUndefined && node.style.maxDimensions.height.isUndefined {
+                        h = node.style.maxDimensions.height
+                    }
+                    
+                    if !w.isUndefined && node.style.minDimensions.width.isUndefined {
+                        w = node.style.minDimensions.width
+                    }
+                    
+                    if !h.isUndefined && node.style.minDimensions.height.isUndefined {
+                        h = node.style.minDimensions.height
                     }
 
                     return (w, h)
