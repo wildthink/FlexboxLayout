@@ -32,8 +32,7 @@ class ViewController: UIViewController {
             $0.style.alignSelf = .Stretch
             $0.style.margin = defaultMargin
             $0.style.flexDirection = .Row
-            $0.style.minDimensions.width = 320
-
+            $0.style.maxDimensions.width = ~(self.view.bounds.width - 40)
             }, children: [
                 
                 UIView().configure({

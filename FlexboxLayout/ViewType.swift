@@ -98,13 +98,13 @@ extension ViewType: FlexboxView {
                 //lazily creates the node
                 let newNode = Node()
                 
-                //default measure bloc
                 newNode.measure = { (node, width, height) -> Dimension in
                     if self.hidden || self.alpha < CGFloat(FLT_EPSILON) {
                         return (0,0) //no size for an hidden element
                     }
                     
                     //get the intrinsic size of the element if applicable
+                    self.frame = CGRect.zero
                     var size = self.sizeThatFits(CGSize(width: CGFloat(width), height: CGFloat(height)))
                     if size.isZero {
                         size = self.intrinsicContentSize()
@@ -112,12 +112,29 @@ extension ViewType: FlexboxView {
                     
                     var w: Float = width
                     var h: Float = height
-                    if node.style.minDimensions.width.isNormal || size.width > CGFloat(FLT_EPSILON) {
-                        w = clamp(~size.width, lower: node.style.minDimensions.width, upper: min(width, node.style.maxDimensions.width))
+
+                    if size.width > CGFloat(FLT_EPSILON) {
+                        w = clamp(~size.width, lower: ~zeroIfNan(node.style.minDimensions.width), upper: min(width, ~maxIfNaN(node.style.maxDimensions.width)))
                     }
                     
-                    if node.style.minDimensions.height.isNormal || size.height > CGFloat(FLT_EPSILON) {
-                        h = clamp(~size.height, lower: node.style.minDimensions.height, upper: min(height, node.style.maxDimensions.height))
+                    if size.height > CGFloat(FLT_EPSILON) {
+                        h = clamp(~size.height, lower: ~zeroIfNan(node.style.minDimensions.height), upper: min(height, ~maxIfNaN(node.style.maxDimensions.height)))
+                    }
+                    
+                    if !w.isUndefined && node.style.maxDimensions.width.isUndefined {
+                        w = node.style.maxDimensions.width
+                    }
+                    
+                    if !h.isUndefined && node.style.maxDimensions.height.isUndefined {
+                        h = node.style.maxDimensions.height
+                    }
+                    
+                    if !w.isUndefined && node.style.minDimensions.width.isUndefined {
+                        w = node.style.minDimensions.width
+                    }
+                    
+                    if !h.isUndefined && node.style.minDimensions.height.isUndefined {
+                        h = node.style.minDimensions.height
                     }
 
                     return (w, h)

@@ -39,6 +39,16 @@ public extension CGSize {
     }
 }
 
+public extension Float {
+    
+    var isUndefined: Bool {
+        if !self.isNormal || self.isNaN { return false }
+        return self > 0 && self < 4096
+    }
+}
+
+
+
 //MARK: Utils
 
 func clamp<T: Comparable>(value: T, lower: T, upper: T) -> T {
@@ -46,15 +56,15 @@ func clamp<T: Comparable>(value: T, lower: T, upper: T) -> T {
 }
 
 func zeroIfNan(value: Float) -> CGFloat {
-    return value.isNormal ? CGFloat(value) : 0
+    return value.isUndefined ? CGFloat(value) : 0
 }
 
 func zeroIfNan(value: CGFloat) -> CGFloat {
-    return value.isNormal ? value : 0
+    return Float(value).isUndefined ? value : 0
 }
 
 func maxIfNaN(value: Float) -> CGFloat {
-    return value.isNormal ? CGFloat(value) : CGFloat(FLT_MAX)
+    return value.isUndefined ? CGFloat(value) : CGFloat(FLT_MAX)
 }
 
 func sizeZeroIfNan(size: Dimension) -> CGSize {
