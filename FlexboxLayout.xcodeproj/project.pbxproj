@@ -20,7 +20,77 @@
 		16C0737D1C889D09005EB8DD /* FlexboxLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 16C0737C1C889D09005EB8DD /* FlexboxLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		16C073861C889D15005EB8DD /* Layout.c in Sources */ = {isa = PBXBuildFile; fileRef = 16C073841C889D15005EB8DD /* Layout.c */; };
 		16C073871C889D15005EB8DD /* Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 16C073851C889D15005EB8DD /* Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D003544E1CA9A5E0006DA250 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D003544D1CA9A5E0006DA250 /* AppDelegate.swift */; };
+		D00354501CA9A5E0006DA250 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D003544F1CA9A5E0006DA250 /* ViewController.swift */; };
+		D00354521CA9A5E0006DA250 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D00354511CA9A5E0006DA250 /* Assets.xcassets */; };
+		D00354551CA9A5E0006DA250 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D00354531CA9A5E0006DA250 /* Main.storyboard */; };
+		D00354601CA9A5E0006DA250 /* DemoOSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D003545F1CA9A5E0006DA250 /* DemoOSXTests.swift */; };
+		D003546B1CA9A5E0006DA250 /* DemoOSXUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D003546A1CA9A5E0006DA250 /* DemoOSXUITests.swift */; };
+		D00354761CA9A719006DA250 /* FlexboxLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C073791C889D09005EB8DD /* FlexboxLayout.framework */; };
+		D003547F1CA9A7A7006DA250 /* FlexboxLayout-OSX.h in Headers */ = {isa = PBXBuildFile; fileRef = D003547E1CA9A7A7006DA250 /* FlexboxLayout-OSX.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D00354861CA9A7A7006DA250 /* FlexboxLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D003547C1CA9A7A7006DA250 /* FlexboxLayout.framework */; };
+		D003548D1CA9A7A7006DA250 /* FlexboxLayout_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D003548C1CA9A7A7006DA250 /* FlexboxLayout_OSXTests.swift */; };
+		D00354911CA9A7A7006DA250 /* FlexboxLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D003547C1CA9A7A7006DA250 /* FlexboxLayout.framework */; };
+		D00354921CA9A7A7006DA250 /* FlexboxLayout.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D003547C1CA9A7A7006DA250 /* FlexboxLayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D003549A1CA9A7CE006DA250 /* FlexboxLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 16C0737C1C889D09005EB8DD /* FlexboxLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D003549B1CA9A7D8006DA250 /* Layout.c in Sources */ = {isa = PBXBuildFile; fileRef = 16C073841C889D15005EB8DD /* Layout.c */; };
+		D003549C1CA9A7DD006DA250 /* Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 16C073851C889D15005EB8DD /* Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D003549D1CA9A7E4006DA250 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C073881C889DB9005EB8DD /* Layout.swift */; };
+		D003549E1CA9A7E7006DA250 /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168E96531C89AF8800AEEC7F /* ViewType.swift */; };
+		D003549F1CA9A7EA006DA250 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166426341CA977EC00371BB0 /* Geometry.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D003545C1CA9A5E0006DA250 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 16C073701C889D09005EB8DD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D003544A1CA9A5E0006DA250;
+			remoteInfo = DemoOSX;
+		};
+		D00354671CA9A5E0006DA250 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 16C073701C889D09005EB8DD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D003544A1CA9A5E0006DA250;
+			remoteInfo = DemoOSX;
+		};
+		D00354871CA9A7A7006DA250 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 16C073701C889D09005EB8DD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D003547B1CA9A7A7006DA250;
+			remoteInfo = "FlexboxLayout-OSX";
+		};
+		D00354891CA9A7A7006DA250 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 16C073701C889D09005EB8DD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D003544A1CA9A5E0006DA250;
+			remoteInfo = DemoOSX;
+		};
+		D003548F1CA9A7A7006DA250 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 16C073701C889D09005EB8DD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D003547B1CA9A7A7006DA250;
+			remoteInfo = "FlexboxLayout-OSX";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D00354961CA9A7A7006DA250 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D00354921CA9A7A7006DA250 /* FlexboxLayout.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		165B2BE91C89E7B8009F81AB /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -41,6 +111,24 @@
 		16C073841C889D15005EB8DD /* Layout.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Layout.c; sourceTree = "<group>"; };
 		16C073851C889D15005EB8DD /* Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Layout.h; sourceTree = "<group>"; };
 		16C073881C889DB9005EB8DD /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		D003544B1CA9A5E0006DA250 /* DemoOSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoOSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D003544D1CA9A5E0006DA250 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D003544F1CA9A5E0006DA250 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D00354511CA9A5E0006DA250 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D00354541CA9A5E0006DA250 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D00354561CA9A5E0006DA250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D003545B1CA9A5E0006DA250 /* DemoOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D003545F1CA9A5E0006DA250 /* DemoOSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoOSXTests.swift; sourceTree = "<group>"; };
+		D00354611CA9A5E0006DA250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D00354661CA9A5E0006DA250 /* DemoOSXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoOSXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D003546A1CA9A5E0006DA250 /* DemoOSXUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoOSXUITests.swift; sourceTree = "<group>"; };
+		D003546C1CA9A5E0006DA250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D003547C1CA9A7A7006DA250 /* FlexboxLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FlexboxLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D003547E1CA9A7A7006DA250 /* FlexboxLayout-OSX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FlexboxLayout-OSX.h"; sourceTree = "<group>"; };
+		D00354801CA9A7A7006DA250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D00354851CA9A7A7006DA250 /* FlexboxLayout-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FlexboxLayout-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D003548C1CA9A7A7006DA250 /* FlexboxLayout_OSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexboxLayout_OSXTests.swift; sourceTree = "<group>"; };
+		D003548E1CA9A7A7006DA250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +143,44 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00354481CA9A5E0006DA250 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D00354911CA9A7A7006DA250 /* FlexboxLayout.framework in Frameworks */,
+				D00354761CA9A719006DA250 /* FlexboxLayout.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00354581CA9A5E0006DA250 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00354631CA9A5E0006DA250 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00354781CA9A7A7006DA250 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00354821CA9A7A7006DA250 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D00354861CA9A7A7006DA250 /* FlexboxLayout.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +208,11 @@
 			children = (
 				16C0737B1C889D09005EB8DD /* FlexboxLayout */,
 				168E96421C89AF6B00AEEC7F /* Demo */,
+				D003544C1CA9A5E0006DA250 /* DemoOSX */,
+				D003545E1CA9A5E0006DA250 /* DemoOSXTests */,
+				D00354691CA9A5E0006DA250 /* DemoOSXUITests */,
+				D003547D1CA9A7A7006DA250 /* FlexboxLayout-OSX */,
+				D003548B1CA9A7A7006DA250 /* FlexboxLayout-OSXTests */,
 				16C0737A1C889D09005EB8DD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -91,6 +222,11 @@
 			children = (
 				16C073791C889D09005EB8DD /* FlexboxLayout.framework */,
 				168E96411C89AF6B00AEEC7F /* Demo.app */,
+				D003544B1CA9A5E0006DA250 /* DemoOSX.app */,
+				D003545B1CA9A5E0006DA250 /* DemoOSXTests.xctest */,
+				D00354661CA9A5E0006DA250 /* DemoOSXUITests.xctest */,
+				D003547C1CA9A7A7006DA250 /* FlexboxLayout.framework */,
+				D00354851CA9A7A7006DA250 /* FlexboxLayout-OSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,6 +245,54 @@
 			path = FlexboxLayout;
 			sourceTree = "<group>";
 		};
+		D003544C1CA9A5E0006DA250 /* DemoOSX */ = {
+			isa = PBXGroup;
+			children = (
+				D003544D1CA9A5E0006DA250 /* AppDelegate.swift */,
+				D003544F1CA9A5E0006DA250 /* ViewController.swift */,
+				D00354511CA9A5E0006DA250 /* Assets.xcassets */,
+				D00354531CA9A5E0006DA250 /* Main.storyboard */,
+				D00354561CA9A5E0006DA250 /* Info.plist */,
+			);
+			path = DemoOSX;
+			sourceTree = "<group>";
+		};
+		D003545E1CA9A5E0006DA250 /* DemoOSXTests */ = {
+			isa = PBXGroup;
+			children = (
+				D003545F1CA9A5E0006DA250 /* DemoOSXTests.swift */,
+				D00354611CA9A5E0006DA250 /* Info.plist */,
+			);
+			path = DemoOSXTests;
+			sourceTree = "<group>";
+		};
+		D00354691CA9A5E0006DA250 /* DemoOSXUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D003546A1CA9A5E0006DA250 /* DemoOSXUITests.swift */,
+				D003546C1CA9A5E0006DA250 /* Info.plist */,
+			);
+			path = DemoOSXUITests;
+			sourceTree = "<group>";
+		};
+		D003547D1CA9A7A7006DA250 /* FlexboxLayout-OSX */ = {
+			isa = PBXGroup;
+			children = (
+				D003547E1CA9A7A7006DA250 /* FlexboxLayout-OSX.h */,
+				D00354801CA9A7A7006DA250 /* Info.plist */,
+			);
+			path = "FlexboxLayout-OSX";
+			sourceTree = "<group>";
+		};
+		D003548B1CA9A7A7006DA250 /* FlexboxLayout-OSXTests */ = {
+			isa = PBXGroup;
+			children = (
+				D003548C1CA9A7A7006DA250 /* FlexboxLayout_OSXTests.swift */,
+				D003548E1CA9A7A7006DA250 /* Info.plist */,
+			);
+			path = "FlexboxLayout-OSXTests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -118,6 +302,16 @@
 			files = (
 				16C073871C889D15005EB8DD /* Layout.h in Headers */,
 				16C0737D1C889D09005EB8DD /* FlexboxLayout.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00354791CA9A7A7006DA250 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D003547F1CA9A7A7006DA250 /* FlexboxLayout-OSX.h in Headers */,
+				D003549A1CA9A7CE006DA250 /* FlexboxLayout.h in Headers */,
+				D003549C1CA9A7DD006DA250 /* Layout.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,13 +353,105 @@
 			productReference = 16C073791C889D09005EB8DD /* FlexboxLayout.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		D003544A1CA9A5E0006DA250 /* DemoOSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D00354731CA9A5E0006DA250 /* Build configuration list for PBXNativeTarget "DemoOSX" */;
+			buildPhases = (
+				D00354471CA9A5E0006DA250 /* Sources */,
+				D00354481CA9A5E0006DA250 /* Frameworks */,
+				D00354491CA9A5E0006DA250 /* Resources */,
+				D00354961CA9A7A7006DA250 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D00354901CA9A7A7006DA250 /* PBXTargetDependency */,
+			);
+			name = DemoOSX;
+			productName = DemoOSX;
+			productReference = D003544B1CA9A5E0006DA250 /* DemoOSX.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D003545A1CA9A5E0006DA250 /* DemoOSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D00354741CA9A5E0006DA250 /* Build configuration list for PBXNativeTarget "DemoOSXTests" */;
+			buildPhases = (
+				D00354571CA9A5E0006DA250 /* Sources */,
+				D00354581CA9A5E0006DA250 /* Frameworks */,
+				D00354591CA9A5E0006DA250 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D003545D1CA9A5E0006DA250 /* PBXTargetDependency */,
+			);
+			name = DemoOSXTests;
+			productName = DemoOSXTests;
+			productReference = D003545B1CA9A5E0006DA250 /* DemoOSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D00354651CA9A5E0006DA250 /* DemoOSXUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D00354751CA9A5E0006DA250 /* Build configuration list for PBXNativeTarget "DemoOSXUITests" */;
+			buildPhases = (
+				D00354621CA9A5E0006DA250 /* Sources */,
+				D00354631CA9A5E0006DA250 /* Frameworks */,
+				D00354641CA9A5E0006DA250 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D00354681CA9A5E0006DA250 /* PBXTargetDependency */,
+			);
+			name = DemoOSXUITests;
+			productName = DemoOSXUITests;
+			productReference = D00354661CA9A5E0006DA250 /* DemoOSXUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		D003547B1CA9A7A7006DA250 /* FlexboxLayout-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D00354931CA9A7A7006DA250 /* Build configuration list for PBXNativeTarget "FlexboxLayout-OSX" */;
+			buildPhases = (
+				D00354771CA9A7A7006DA250 /* Sources */,
+				D00354781CA9A7A7006DA250 /* Frameworks */,
+				D00354791CA9A7A7006DA250 /* Headers */,
+				D003547A1CA9A7A7006DA250 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FlexboxLayout-OSX";
+			productName = "FlexboxLayout-OSX";
+			productReference = D003547C1CA9A7A7006DA250 /* FlexboxLayout.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D00354841CA9A7A7006DA250 /* FlexboxLayout-OSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D00354971CA9A7A7006DA250 /* Build configuration list for PBXNativeTarget "FlexboxLayout-OSXTests" */;
+			buildPhases = (
+				D00354811CA9A7A7006DA250 /* Sources */,
+				D00354821CA9A7A7006DA250 /* Frameworks */,
+				D00354831CA9A7A7006DA250 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D00354881CA9A7A7006DA250 /* PBXTargetDependency */,
+				D003548A1CA9A7A7006DA250 /* PBXTargetDependency */,
+			);
+			name = "FlexboxLayout-OSXTests";
+			productName = "FlexboxLayout-OSXTests";
+			productReference = D00354851CA9A7A7006DA250 /* FlexboxLayout-OSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		16C073701C889D09005EB8DD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Alex Usbergo";
 				TargetAttributes = {
@@ -174,6 +460,24 @@
 					};
 					16C073781C889D09005EB8DD = {
 						CreatedOnToolsVersion = 7.2.1;
+					};
+					D003544A1CA9A5E0006DA250 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					D003545A1CA9A5E0006DA250 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = D003544A1CA9A5E0006DA250;
+					};
+					D00354651CA9A5E0006DA250 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = D003544A1CA9A5E0006DA250;
+					};
+					D003547B1CA9A7A7006DA250 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					D00354841CA9A7A7006DA250 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = D003544A1CA9A5E0006DA250;
 					};
 				};
 			};
@@ -192,6 +496,11 @@
 			targets = (
 				16C073781C889D09005EB8DD /* FlexboxLayout */,
 				168E96401C89AF6B00AEEC7F /* Demo */,
+				D003544A1CA9A5E0006DA250 /* DemoOSX */,
+				D003545A1CA9A5E0006DA250 /* DemoOSXTests */,
+				D00354651CA9A5E0006DA250 /* DemoOSXUITests */,
+				D003547B1CA9A7A7006DA250 /* FlexboxLayout-OSX */,
+				D00354841CA9A7A7006DA250 /* FlexboxLayout-OSXTests */,
 			);
 		};
 /* End PBXProject section */
@@ -208,6 +517,43 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		16C073771C889D09005EB8DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00354491CA9A5E0006DA250 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D00354521CA9A5E0006DA250 /* Assets.xcassets in Resources */,
+				D00354551CA9A5E0006DA250 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00354591CA9A5E0006DA250 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00354641CA9A5E0006DA250 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D003547A1CA9A7A7006DA250 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00354831CA9A7A7006DA250 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -239,7 +585,79 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D00354471CA9A5E0006DA250 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D00354501CA9A5E0006DA250 /* ViewController.swift in Sources */,
+				D003544E1CA9A5E0006DA250 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00354571CA9A5E0006DA250 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D00354601CA9A5E0006DA250 /* DemoOSXTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00354621CA9A5E0006DA250 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D003546B1CA9A5E0006DA250 /* DemoOSXUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00354771CA9A7A7006DA250 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D003549E1CA9A7E7006DA250 /* ViewType.swift in Sources */,
+				D003549F1CA9A7EA006DA250 /* Geometry.swift in Sources */,
+				D003549B1CA9A7D8006DA250 /* Layout.c in Sources */,
+				D003549D1CA9A7E4006DA250 /* Layout.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D00354811CA9A7A7006DA250 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D003548D1CA9A7A7006DA250 /* FlexboxLayout_OSXTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D003545D1CA9A5E0006DA250 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D003544A1CA9A5E0006DA250 /* DemoOSX */;
+			targetProxy = D003545C1CA9A5E0006DA250 /* PBXContainerItemProxy */;
+		};
+		D00354681CA9A5E0006DA250 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D003544A1CA9A5E0006DA250 /* DemoOSX */;
+			targetProxy = D00354671CA9A5E0006DA250 /* PBXContainerItemProxy */;
+		};
+		D00354881CA9A7A7006DA250 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D003547B1CA9A7A7006DA250 /* FlexboxLayout-OSX */;
+			targetProxy = D00354871CA9A7A7006DA250 /* PBXContainerItemProxy */;
+		};
+		D003548A1CA9A7A7006DA250 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D003544A1CA9A5E0006DA250 /* DemoOSX */;
+			targetProxy = D00354891CA9A7A7006DA250 /* PBXContainerItemProxy */;
+		};
+		D00354901CA9A7A7006DA250 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D003547B1CA9A7A7006DA250 /* FlexboxLayout-OSX */;
+			targetProxy = D003548F1CA9A7A7006DA250 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		168E96471C89AF6B00AEEC7F /* Main.storyboard */ = {
@@ -256,6 +674,14 @@
 				168E964D1C89AF6B00AEEC7F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D00354531CA9A5E0006DA250 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D00354541CA9A5E0006DA250 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -419,6 +845,182 @@
 			};
 			name = Release;
 		};
+		D003546D1CA9A5E0006DA250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = DemoOSX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.microstrategy.demo.DemoOSX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D003546E1CA9A5E0006DA250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = DemoOSX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.microstrategy.demo.DemoOSX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D003546F1CA9A5E0006DA250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = DemoOSXTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.microstrategy.demo.DemoOSXTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DemoOSX.app/Contents/MacOS/DemoOSX";
+			};
+			name = Debug;
+		};
+		D00354701CA9A5E0006DA250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = DemoOSXTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.microstrategy.demo.DemoOSXTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DemoOSX.app/Contents/MacOS/DemoOSX";
+			};
+			name = Release;
+		};
+		D00354711CA9A5E0006DA250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = DemoOSXUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.microstrategy.demo.DemoOSXUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = DemoOSX;
+			};
+			name = Debug;
+		};
+		D00354721CA9A5E0006DA250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = DemoOSXUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.microstrategy.demo.DemoOSXUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = DemoOSX;
+			};
+			name = Release;
+		};
+		D00354941CA9A7A7006DA250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "FlexboxLayout-OSX/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microstrategy.demo.FlexboxLayout-OSX";
+				PRODUCT_NAME = FlexboxLayout;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D00354951CA9A7A7006DA250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "FlexboxLayout-OSX/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microstrategy.demo.FlexboxLayout-OSX";
+				PRODUCT_NAME = FlexboxLayout;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		D00354981CA9A7A7006DA250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "FlexboxLayout-OSXTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microstrategy.demo.FlexboxLayout-OSXTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DemoOSX.app/Contents/MacOS/DemoOSX";
+			};
+			name = Debug;
+		};
+		D00354991CA9A7A7006DA250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "FlexboxLayout-OSXTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microstrategy.demo.FlexboxLayout-OSXTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DemoOSX.app/Contents/MacOS/DemoOSX";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -448,6 +1050,46 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D00354731CA9A5E0006DA250 /* Build configuration list for PBXNativeTarget "DemoOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D003546D1CA9A5E0006DA250 /* Debug */,
+				D003546E1CA9A5E0006DA250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D00354741CA9A5E0006DA250 /* Build configuration list for PBXNativeTarget "DemoOSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D003546F1CA9A5E0006DA250 /* Debug */,
+				D00354701CA9A5E0006DA250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D00354751CA9A5E0006DA250 /* Build configuration list for PBXNativeTarget "DemoOSXUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D00354711CA9A5E0006DA250 /* Debug */,
+				D00354721CA9A5E0006DA250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D00354931CA9A7A7006DA250 /* Build configuration list for PBXNativeTarget "FlexboxLayout-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D00354941CA9A7A7006DA250 /* Debug */,
+				D00354951CA9A7A7006DA250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D00354971CA9A7A7006DA250 /* Build configuration list for PBXNativeTarget "FlexboxLayout-OSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D00354981CA9A7A7006DA250 /* Debug */,
+				D00354991CA9A7A7006DA250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

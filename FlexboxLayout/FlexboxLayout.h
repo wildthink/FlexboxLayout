@@ -6,7 +6,9 @@
 //  Copyright © 2016 Alex Usbergo. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+//#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "Layout.h"
 
 //! Project version number for FlexboxLayout.
 FOUNDATION_EXPORT double FlexboxLayoutVersionNumber;

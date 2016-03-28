@@ -79,7 +79,7 @@ extension FlexboxView where Self: ViewType {
         self.layout(boundingBox)
         
         let timeElapsed = (CFAbsoluteTimeGetCurrent() - startTime)*1000
-        print(String(format: "▯ render (%2f) ms.", arguments: [timeElapsed]))
+        Swift.print(String(format: "▯ render (%2f) ms.", arguments: [timeElapsed]))
     }
 }
 
@@ -100,15 +100,29 @@ extension ViewType: FlexboxView {
                 
                 //default measure bloc
                 newNode.measure = { (node, width, height) -> Dimension in
+                    
+#if os(iOS)
                     if self.hidden || self.alpha < CGFloat(FLT_EPSILON) {
                         return (0,0) //no size for an hidden element
                     }
                     
                     //get the intrinsic size of the element if applicable
                     var size = self.sizeThatFits(CGSize(width: CGFloat(width), height: CGFloat(height)))
+
                     if size.isZero {
                         size = self.intrinsicContentSize()
                     }
+#else
+                    if self.hidden  {
+                        return (0,0) //no size for an hidden element
+                    }
+                    var size = self.intrinsicContentSize
+                    if let control = self as? NSControl {
+                        size = CGSize(width: -1, height: -1)
+                        control.sizeToFit()
+                        size = control.bounds.size
+                    }
+#endif
                     
                     var w: Float = width
                     var h: Float = height
