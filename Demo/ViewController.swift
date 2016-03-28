@@ -32,7 +32,8 @@ class ViewController: UIViewController {
             $0.style.alignSelf = .Stretch
             $0.style.margin = defaultMargin
             $0.style.flexDirection = .Row
-            
+            $0.style.minDimensions.width = 320
+
             }, children: [
                 
                 UIView().configure({
@@ -46,7 +47,6 @@ class ViewController: UIViewController {
                 
                 UIView().configure({
                     $0.backgroundColor = UIColor.a
-                    $0.style.minDimensions = (100, 54)
                     $0.style.alignSelf = .Center
                     $0.style.flex = 0.8
                     }, children: [
@@ -59,9 +59,10 @@ class ViewController: UIViewController {
                         }),
                         
                         UILabel().configure({
-                            $0.text = "SUBTITLE"
-                            $0.textAlignment = .Center
+                            $0.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                            $0.textAlignment = .Left
                             $0.font = UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+                            $0.numberOfLines = 0
                             $0.style.alignSelf = .FlexStart
                             $0.style.margin = (0, 6.0, 0, 0, 8.0, 0)
                         })
@@ -88,7 +89,7 @@ class ViewController: UIViewController {
     }
     
     func layout() {
-        self.treeView?.layout(CGSize(width: self.view.bounds.size.width, height: 80))
+        self.treeView?.layout()
         self.treeView?.center = self.view.center
     }
     

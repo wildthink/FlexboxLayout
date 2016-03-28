@@ -10,7 +10,7 @@ import Foundation
 
 protocol CEnumTransformable {
     
-    typealias CEnumType
+    associatedtype CEnumType
     
     ///The default value for this enum
     static func defaultValue() -> Self
@@ -542,7 +542,7 @@ public class Node {
                 assert(n.pointer != nil)
                 return n.pointer
             }
-            return  UnsafeMutablePointer<css_node_t>()
+            return nil
         }
         
         ///is_dirty function wrapper
