@@ -99,16 +99,32 @@ extension ViewType: FlexboxView {
                 let newNode = Node()
                 
                 newNode.measure = { (node, width, height) -> Dimension in
-                    if self.hidden || self.alpha < CGFloat(FLT_EPSILON) {
+                    
+                    var opacityIsZero = false
+                    #if os(iOS)
+                        opacityIsZero = self.alpha < CGFloat(FLT_EPSILON)
+                    #endif
+                    
+                    if self.hidden || opacityIsZero {
                         return (0,0) //no size for an hidden element
                     }
                     
                     //get the intrinsic size of the element if applicable
                     self.frame = CGRect.zero
-                    var size = self.sizeThatFits(CGSize(width: CGFloat(width), height: CGFloat(height)))
-                    if size.isZero {
-                        size = self.intrinsicContentSize()
-                    }
+                    var size = CGSize.zero
+
+                    #if os(iOS)
+                        size = self.sizeThatFits(CGSize(width: CGFloat(width), height: CGFloat(height)))
+                        if size.isZero {
+                            size = self.intrinsicContentSize()
+                        }
+                    #else
+                        if let control = self as? NSControl {
+                            size = CGSize(width: -1, height: -1)
+                            control.sizeToFit()
+                            size = control.bounds.size
+                        }
+                    #endif
                     
                     var w: Float = width
                     var h: Float = height

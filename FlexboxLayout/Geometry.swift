@@ -8,6 +8,13 @@
 
 import Foundation
 
+#if os(iOS)
+    import UIKit
+    
+#else
+    import AppKit
+#endif
+
 extension Node {
     
     ///Apply the layout to the given view hierarchy.
@@ -46,7 +53,6 @@ public extension Float {
         return self > 0 && self < 4096
     }
 }
-
 
 
 //MARK: Utils
