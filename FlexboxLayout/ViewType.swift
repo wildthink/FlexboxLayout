@@ -130,11 +130,19 @@ extension ViewType: FlexboxView {
                     var h: Float = height
 
                     if size.width > CGFloat(FLT_EPSILON) {
-                        w = clamp(~size.width, lower: ~zeroIfNan(node.style.minDimensions.width), upper: min(width, ~maxIfNaN(node.style.maxDimensions.width)))
+                        w = ~size.width
+                        let lower = ~zeroIfNan(node.style.minDimensions.width)
+                        let upper = ~min(maxIfNaN(width), maxIfNaN(node.style.maxDimensions.width))
+                        w = w < lower ? lower : w
+                        w = w > upper ? upper : w
                     }
                     
                     if size.height > CGFloat(FLT_EPSILON) {
-                        h = clamp(~size.height, lower: ~zeroIfNan(node.style.minDimensions.height), upper: min(height, ~maxIfNaN(node.style.maxDimensions.height)))
+                        h = ~size.height
+                        let lower = ~zeroIfNan(node.style.minDimensions.height)
+                        let upper = ~min(maxIfNaN(height), maxIfNaN(node.style.maxDimensions.height))
+                        h = h < lower ? lower : h
+                        h = h > upper ? upper : h
                     }
                     
                     if !w.isUndefined && node.style.maxDimensions.width.isUndefined {
