@@ -145,19 +145,19 @@ extension ViewType: FlexboxView {
                         h = h > upper ? upper : h
                     }
                     
-                    if !w.isUndefined && node.style.maxDimensions.width.isUndefined {
+                    if !w.isDefined && node.style.maxDimensions.width.isDefined {
                         w = node.style.maxDimensions.width
                     }
                     
-                    if !h.isUndefined && node.style.maxDimensions.height.isUndefined {
+                    if !h.isDefined && node.style.maxDimensions.height.isDefined {
                         h = node.style.maxDimensions.height
                     }
                     
-                    if !w.isUndefined && node.style.minDimensions.width.isUndefined {
+                    if !w.isDefined && node.style.minDimensions.width.isDefined {
                         w = node.style.minDimensions.width
                     }
                     
-                    if !h.isUndefined && node.style.minDimensions.height.isUndefined {
+                    if !h.isDefined && node.style.minDimensions.height.isDefined {
                         h = node.style.minDimensions.height
                     }
 
