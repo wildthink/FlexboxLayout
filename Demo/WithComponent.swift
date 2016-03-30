@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FlexboxLayout
 
+/// A 'ComponentView' can be used as a normal view at any point
 class ViewControllerWithComponent: UIViewController, PostComponentDelegate {
     
     var state = Post()
@@ -30,7 +31,6 @@ class ViewControllerWithComponent: UIViewController, PostComponentDelegate {
     }
     
     func render() {
-        
         
         // render the component
         self.component.render()

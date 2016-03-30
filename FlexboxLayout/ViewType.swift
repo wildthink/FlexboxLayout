@@ -46,7 +46,6 @@ extension FlexboxView where Self: ViewType {
     
     /// Recursively apply the configuration closure to this view tree
     public func configure() {
-        
         func configure(view: ViewType) {
             
             //TOFIX: workaround to update the state in the closure
@@ -68,7 +67,22 @@ extension FlexboxView where Self: ViewType {
     /// Re-configure the view and re-compute the flexbox layout
     public func render(bounds: CGSize = CGSize.undefined) {
         
+        func preRender(view: ViewType) {
+            for subview in view.subviews {
+                preRender(subview)
+            }
+        }
+        
+        func postRender(view: ViewType) {
+            view.postRender()
+            for subview in view.subviews {
+                postRender(subview)
+            }
+        }
+        
         let startTime = CFAbsoluteTimeGetCurrent()
+        
+        preRender(self)
         
         //configure the view tree
         self.configure()
@@ -77,8 +91,15 @@ extension FlexboxView where Self: ViewType {
         self.layout(bounds)
         
         let timeElapsed = (CFAbsoluteTimeGetCurrent() - startTime)*1000
-        print(String(format: "▯ render (%2f) ms.", arguments: [timeElapsed]))
+        
+        postRender(self)
+        
+        if timeElapsed > 16 {
+            print(String(format: "- warning: render (%2f) ms.", arguments: [timeElapsed]))
+        }
     }
+    
+
 }
 
 extension ViewType: FlexboxView {
@@ -186,6 +207,7 @@ extension ViewType: FlexboxView {
     public var style: Style {
         return self.flexNode.style
     }
+    
     
     /// Recursively computes the layout of this view
     public func layout(bounds: CGSize = CGSize.undefined) {

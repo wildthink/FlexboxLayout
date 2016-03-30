@@ -9,42 +9,50 @@
 import UIKit
 import FlexboxLayout
 
+/// An example view controller that implements a scrollable list of controllers
+/// - Note: Use this approach only for list with a small number of components.
+/// - See the tableview example if you want to implement a list is scalable
 class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegate {
     
+    let n = 25
     var wrapper: UIView!
-    var postState1 = Post()
-    var postState2 = Post()
-    var postState3 = Post()
+    var posts: [Post]!
+    
+    private func createPosts() {
+        
+        // creates 'n' random posts
+        var posts = [Post]()
+        for _ in 0..<n {
+            posts.append(Post())
+        }
+        self.posts = posts
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // we layout the component view as part of a flexbox tree
-        self.wrapper = UIView().configure({
-            $0.style.flexDirection = .Column
-            $0.style.justifyContent = .Center
-            $0.style.alignItems = .Center
-            $0.style.margin = (8.0, 8.0, 8.0, 8.0, 8.0, 8.0)
-            
-        }, children:[
-            
-            PostComponentView(withState: { return self.postState1 }).configure({
-                
+        
+        self.createPosts()
+        
+        // creates 'n' components
+        var children = [PostComponentView]()
+        for i in 0..<n {
+            children.append(PostComponentView(withState: { return self.posts[i] }).configure({
                 // we can ovverride the default configuration of the component in here
                 $0.defaultConfiguration()
+                $0.style.margin = (8.0, 8.0, 8.0, 8.0, 8.0, 8.0)
                 $0.style.maxDimensions = (Undefined, Undefined)
-            }),
-            PostComponentView(withState: { return self.postState2 }).configure({
-                $0.defaultConfiguration()
-                $0.style.maxDimensions = (Undefined, Undefined)
-            }),
-
-            PostComponentView(withState: { return self.postState3 }).configure({
-                $0.defaultConfiguration()
-                $0.style.maxDimensions = (Undefined, Undefined)
-            })
-
-        ])
+            }))
+        }
+        
+        // we layout the component view as part of a flexbox tree
+        self.wrapper = UIScrollView().configure({
+            
+            $0.style.flexDirection = .Column
+            $0.style.justifyContent = .FlexStart
+            $0.style.alignItems = .Center
+            $0.style.dimensions = ~self.view.bounds.size
+            
+        }, children:children)
         
         self.view.addSubview(wrapper)
     }
@@ -57,16 +65,12 @@ class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegat
         
         // we re-render the whole tree
         self.wrapper?.render(self.view.bounds.size)
-        self.wrapper?.center = self.view.center
     }
     
     dynamic func postComponentDidPressButton(sender: UIButton) {
         
         // when the button is pressed we generate another post and re-render the component
-        postState1 = Post()
-        postState2 = Post()
-        postState3 = Post()
-        
+        self.createPosts()
         self.render()
     }
 }

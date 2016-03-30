@@ -54,7 +54,6 @@ public extension Float {
     }
 }
 
-
 //MARK: Utils
 
 func zeroIfNan(value: Float) -> CGFloat {
@@ -94,3 +93,43 @@ public prefix func ~(size: CGSize) -> Dimension {
 public prefix func ~(insets: EdgeInsets) -> Inset {
     return (left: ~insets.left, top: ~insets.top, right: ~insets.right, bottom: ~insets.bottom, start: ~insets.left, end: ~insets.right)
 }
+
+#if os(iOS)
+    
+    extension FlexboxView where Self: ViewType {
+        
+        
+        /// Called before the configure block is called
+        /// - Note: Subclasses to implement this method if required
+        internal func preRender() {
+            
+            guard let component = self as? ComponentView else {
+                return
+            }
+            
+            component.updateState()
+        }
+        
+        /// Called before the layout is performed
+        /// - Note: Subclasses to implement this method if required
+        internal func postRender() {
+            
+            guard let scrollView = self as? UIScrollView else {
+                return
+            }
+            
+            var x: CGFloat = 0
+            var y: CGFloat = 0
+            
+            for subview in scrollView.subviews {
+                x = CGRectGetMaxX(subview.frame) > x ? CGRectGetMaxX(subview.frame) : x
+                y = CGRectGetMaxY(subview.frame) > y ? CGRectGetMaxY(subview.frame) : y
+            }
+            
+            scrollView.contentSize = CGSize(width: x, height: y)
+            scrollView.scrollEnabled = true
+        }
+    }
+    
+#endif
+

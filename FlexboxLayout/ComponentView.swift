@@ -6,11 +6,12 @@
 //  Copyright © 2016 Alex Usbergo. All rights reserved.
 //
 
-#if os(iOS)
 import UIKit
     
 public protocol ComponentStateType { }
 
+//MARK: - ComponentView
+    
 public class ComponentView: ViewType {
     
     /// The state of this component
@@ -51,7 +52,7 @@ public class ComponentView: ViewType {
     }
     
     /// Update the state closure
-    public func state(closure: (Void) -> ComponentStateType?) -> Self {
+    private func state(closure: (Void) -> ComponentStateType?) -> Self {
         self.stateClosure = closure
         self.updateState()
         
@@ -86,5 +87,10 @@ public class ComponentView: ViewType {
     }
 }
     
+//MARK: - VolatileComponentView
 
-#endif
+public class VolatileComponentView: ComponentView {
+    
+}
+    
+
