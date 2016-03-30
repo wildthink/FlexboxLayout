@@ -11,9 +11,10 @@ import CoreGraphics
 
 #if os(iOS)
     import UIKit
-    
+    public typealias EdgeInsets = UIEdgeInsets
 #else
     import AppKit
+    public typealias EdgeInsets = NSEdgeInsets
 #endif
 
 extension Node {
@@ -48,30 +49,24 @@ public extension CGSize {
 }
 
 public extension Float {
-    
-    var isUndefined: Bool {
-        if !self.isNormal || self.isNaN { return false }
+
+    var isDefined: Bool {
         return self > 0 && self < 4096
     }
 }
 
-
 //MARK: Utils
 
-func clamp<T: Comparable>(value: T, lower: T, upper: T) -> T {
-    return min(max(value, lower), upper)
-}
-
 func zeroIfNan(value: Float) -> CGFloat {
-    return value.isUndefined ? CGFloat(value) : 0
+    return value.isDefined ? CGFloat(value) : 0
 }
 
 func zeroIfNan(value: CGFloat) -> CGFloat {
-    return Float(value).isUndefined ? value : 0
+    return Float(value).isDefined ? value : 0
 }
 
 func maxIfNaN(value: Float) -> CGFloat {
-    return value.isUndefined ? CGFloat(value) : CGFloat(FLT_MAX)
+    return value.isDefined ? CGFloat(value) : CGFloat(FLT_MAX)
 }
 
 func sizeZeroIfNan(size: Dimension) -> CGSize {
@@ -99,3 +94,37 @@ public prefix func ~(size: CGSize) -> Dimension {
 public prefix func ~(insets: EdgeInsets) -> Inset {
     return (left: ~insets.left, top: ~insets.top, right: ~insets.right, bottom: ~insets.bottom, start: ~insets.left, end: ~insets.right)
 }
+
+#if os(iOS)
+    
+    extension FlexboxView where Self: ViewType {
+        
+        /// Called before the configure block is called
+        /// - Note: Subclasses to implement this method if required
+        internal func preRender() {
+
+        }
+        
+        /// Called before the layout is performed
+        /// - Note: Subclasses to implement this method if required
+        internal func postRender() {
+            
+            guard let scrollView = self as? UIScrollView else {
+                return
+            }
+            
+            var x: CGFloat = 0
+            var y: CGFloat = 0
+            
+            for subview in scrollView.subviews {
+                x = CGRectGetMaxX(subview.frame) > x ? CGRectGetMaxX(subview.frame) : x
+                y = CGRectGetMaxY(subview.frame) > y ? CGRectGetMaxY(subview.frame) : y
+            }
+            
+            scrollView.contentSize = CGSize(width: x, height: y)
+            scrollView.scrollEnabled = true
+        }
+    }
+    
+#endif
+
