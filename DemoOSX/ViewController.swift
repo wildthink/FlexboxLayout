@@ -71,6 +71,8 @@ class ViewController: NSViewController {
                 UIView().configure({
                     $0.backgroundColor = UIColor.yellowColor().CGColor
                     $0.style.alignSelf = .Center
+                    $0.style.alignItems = .Center
+                    $0.style.alignContent = .Center
                     $0.style.flex = 0.8
                     }, children: [
                         UILabel().configure({
@@ -99,7 +101,7 @@ class ViewController: NSViewController {
 //                    $0.backgroundColor = UIColor.cyanColor().CGColor
                     $0.stringValue = "88:88"
 //                    $0.textColor = UIColor.a
-//                    $0.textAlignment = .Center
+                    $0.alignment = .Center
                     $0.style.minDimensions = (54, 54)
                     $0.style.alignSelf = .Center
                     $0.style.flex = 0.2
