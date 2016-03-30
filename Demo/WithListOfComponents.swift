@@ -75,7 +75,7 @@ class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegat
         // when the button is pressed we generate another post and re-render the component
         self.createPosts()
         
-        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: [], animations: {
+        UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: [], animations: {
             self.render()
 
             }, completion: nil)
