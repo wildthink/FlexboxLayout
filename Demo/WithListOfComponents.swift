@@ -36,7 +36,10 @@ class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegat
         // creates 'n' components
         var children = [PostComponentView]()
         for i in 0..<n {
-            children.append(PostComponentView(withState: { return self.posts[i] }).configure({
+            children.append(PostComponentView().configure({
+                
+                $0.state = self.posts[i]
+                
                 // we can ovverride the default configuration of the component in here
                 $0.defaultConfiguration()
                 $0.style.margin = (8.0, 8.0, 8.0, 8.0, 8.0, 8.0)
@@ -71,6 +74,11 @@ class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegat
         
         // when the button is pressed we generate another post and re-render the component
         self.createPosts()
-        self.render()
+        
+        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: [], animations: {
+            self.render()
+
+            }, completion: nil)
+        
     }
 }

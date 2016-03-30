@@ -48,9 +48,6 @@ extension FlexboxView where Self: ViewType {
     public func configure() {
         func configure(view: ViewType) {
             
-            //TOFIX: workaround to update the state in the closure
-            if let component = view as? ComponentView { component.updateState() }
-            
             //runs the configure closure
             view.internalStore.configureClosure?()
             

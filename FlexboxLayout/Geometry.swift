@@ -98,16 +98,10 @@ public prefix func ~(insets: EdgeInsets) -> Inset {
     
     extension FlexboxView where Self: ViewType {
         
-        
         /// Called before the configure block is called
         /// - Note: Subclasses to implement this method if required
         internal func preRender() {
-            
-            guard let component = self as? ComponentView else {
-                return
-            }
-            
-            component.updateState()
+
         }
         
         /// Called before the layout is performed

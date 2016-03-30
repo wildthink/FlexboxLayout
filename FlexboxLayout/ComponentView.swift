@@ -15,9 +15,11 @@ public protocol ComponentStateType { }
 public class ComponentView: ViewType {
     
     /// The state of this component
-    public var state: ComponentStateType?
-    
-    internal var stateClosure: (Void) -> ComponentStateType? = { return nil }
+    public var state: ComponentStateType? {
+        didSet {
+            self.didUpdateState()
+        }
+    }
     
     //MARK: Abstract
     
@@ -35,35 +37,27 @@ public class ComponentView: ViewType {
 
     //MARK: State
 
-    public init(withState closure: (Void) -> ComponentStateType?) {
+    public init() {
         super.init(frame: CGRect.zero)
-        self.state(closure)
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    
-    /// Re-run the state closure and renders the component
-    public func update(bounds: CGSize = CGSize.undefined) {
-        self.updateState()
-        self.render(bounds)
-    }
-    
     /// Update the state closure
-    private func state(closure: (Void) -> ComponentStateType?) -> Self {
-        self.stateClosure = closure
-        self.updateState()
+    private func didUpdateState() {
         
-        guard let state = self.state else { return self }
+        guard let state = self.state else {
+            return
+        }
         
         //not initialised yet
         if !self.hasFlexNode {
             self.constructComponent(state)
         }
         
-        return self
+        return
     }
     
     //MARK: Layout
@@ -78,12 +72,6 @@ public class ComponentView: ViewType {
     public override func intrinsicContentSize() -> CGSize {
         self.render(CGSize.undefined)
         return self.bounds.size ?? CGSize.undefined
-    }
-    
-    //MARK: Internal
-    
-    internal func updateState() {
-        self.state = self.stateClosure()
     }
 }
     

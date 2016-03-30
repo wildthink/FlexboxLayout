@@ -86,7 +86,7 @@ class PostComponentView: ComponentView {
                             $0.textAlignment = .Left
                             $0.font = UIFont.systemFontOfSize(12, weight: UIFontWeightLight)
                             $0.numberOfLines = 0
-                            $0.style.alignSelf = .FlexStart
+                            $0.style.alignSelf = .Stretch
                             $0.style.margin = (0, 6.0, 0, 0, 8.0, 0)
                             $0.style.maxDimensions.height = 96
                             $0.style.margin = (8.0, 8.0, 8.0, 8.0, 8.0, 8.0)

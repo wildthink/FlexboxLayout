@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 import FlexboxLayout
 
-/// A 'ComponentView' can be used as a normal view at any point
+/// A 'ComponentView' can be used as a normal view at any point.
+/// Also you don't need to set a frame for it since it has its intrinsic content size.
 class ViewControllerWithComponent: UIViewController, PostComponentDelegate {
     
     var state = Post()
@@ -20,7 +21,11 @@ class ViewControllerWithComponent: UIViewController, PostComponentDelegate {
         super.viewDidLoad()
         
         // creates the component with the get-state closure and set this obj as delegate
-        self.component = PostComponentView(withState: { return self.state })
+        self.component = PostComponentView().configure({
+            $0.state = self.state
+            $0.defaultConfiguration()
+        })
+        
         self.component.delegate = self
         self.view.addSubview(self.component)
         self.render()

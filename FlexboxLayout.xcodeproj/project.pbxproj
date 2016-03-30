@@ -76,6 +76,7 @@
 				168E96451C89AF6B00AEEC7F /* WithoutComponent.swift */,
 				1621489C1CABF5E70029CF93 /* WithComponent.swift */,
 				1664263B1CAA789100371BB0 /* WithListOfComponents.swift */,
+				1621489A1CABF2EC0029CF93 /* PostComponentView.swift */,
 				168E96471C89AF6B00AEEC7F /* Main.storyboard */,
 				168E964A1C89AF6B00AEEC7F /* Assets.xcassets */,
 				168E964C1C89AF6B00AEEC7F /* LaunchScreen.storyboard */,
@@ -83,7 +84,6 @@
 				165B2BE91C89E7B8009F81AB /* Extensions.swift */,
 				16A1D4E11C930E3A001AEDD7 /* main.m */,
 				16A1D4E01C930E3A001AEDD7 /* Demo-Bridging-Header.h */,
-				1621489A1CABF2EC0029CF93 /* PostComponentView.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
