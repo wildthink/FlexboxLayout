@@ -11,14 +11,9 @@ import Foundation
 #if os(iOS)
     import UIKit
     public typealias ViewType = UIView
-    public typealias LabelType = UILabel
-    public typealias EdgeInsets = UIEdgeInsets
-    
 #else
     import AppKit
     public typealias ViewType = NSView
-    public typealias LabelType = NSTextView
-    public typealias EdgeInsets = NSEdgeInsets
 #endif
 
 //MARK: Layout
@@ -54,6 +49,9 @@ extension FlexboxView where Self: ViewType {
         
         func configure(view: ViewType) {
             
+            //TOFIX: workaround to update the state in the closure
+            if let component = view as? ComponentView { component.updateState() }
+            
             //runs the configure closure
             view.internalStore.configureClosure?()
             
@@ -68,7 +66,7 @@ extension FlexboxView where Self: ViewType {
     }
     
     /// Re-configure the view and re-compute the flexbox layout
-    public func render(boundingBox: CGSize = CGSize.undefined) {
+    public func render(bounds: CGSize = CGSize.undefined) {
         
         let startTime = CFAbsoluteTimeGetCurrent()
         
@@ -76,7 +74,7 @@ extension FlexboxView where Self: ViewType {
         self.configure()
         
         //runs the flexbox engine
-        self.layout(boundingBox)
+        self.layout(bounds)
         
         let timeElapsed = (CFAbsoluteTimeGetCurrent() - startTime)*1000
         print(String(format: "▯ render (%2f) ms.", arguments: [timeElapsed]))
@@ -87,7 +85,7 @@ extension ViewType: FlexboxView {
     
     ///Wether this view has or not a flexbox node associated
     public var hasFlexNode: Bool {
-        return (objc_getAssociatedObject(self, &__flexNodeHandle) != nil)
+        return (objc_getAssociatedObject(self, &__flexNodeHandle) != nil) 
     }
     
     /// Returns the associated node for this view.
@@ -98,6 +96,7 @@ extension ViewType: FlexboxView {
                 //lazily creates the node
                 let newNode = Node()
                 
+
                 newNode.measure = { (node, width, height) -> Dimension in
                     
                     var opacityIsZero = false
@@ -114,10 +113,17 @@ extension ViewType: FlexboxView {
                     var size = CGSize.zero
 
                     #if os(iOS)
-                        size = self.sizeThatFits(CGSize(width: CGFloat(width), height: CGFloat(height)))
-                        if size.isZero {
-                            size = self.intrinsicContentSize()
+                        
+                        if let _ = self as? ComponentView {
+                            //a componentview is a flexbox node
+                            
+                        } else {
+                            size = self.sizeThatFits(CGSize(width: CGFloat(width), height: CGFloat(height)))
+                            if size.isZero {
+                                size = self.intrinsicContentSize()
+                            }
                         }
+
                     #else
                         if let control = self as? NSControl {
                             size = CGSize(width: -1, height: -1)
@@ -160,7 +166,7 @@ extension ViewType: FlexboxView {
                     if !h.isDefined && node.style.minDimensions.height.isDefined {
                         h = node.style.minDimensions.height
                     }
-
+                    
                     return (w, h)
                 }
                 
@@ -181,16 +187,10 @@ extension ViewType: FlexboxView {
         return self.flexNode.style
     }
     
-    /// Left for subclasses to implement some specific logic prior to the layout
-    public func beforeLayout() {
-        ///implement this in your subview
-    }
-    
     /// Recursively computes the layout of this view
-    public func layout(boundingBox: CGSize = CGSize.undefined) {
+    public func layout(bounds: CGSize = CGSize.undefined) {
         
         func prepare(view: ViewType) {
-            view.beforeLayout()
             for subview in view.subviews.filter({ return $0.hasFlexNode }) {
                 prepare(subview)
             }
@@ -200,7 +200,7 @@ extension ViewType: FlexboxView {
         
         func compute() {
             self.recursivelyAddChildren()
-            self.flexNode.layout(~boundingBox.width, maxHeight: ~boundingBox.height, parentDirection: .Inherit)
+            self.flexNode.layout(~bounds.width, maxHeight: ~bounds.height, parentDirection: .Inherit)
             self.flexNode.apply(self)
         }
         

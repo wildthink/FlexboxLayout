@@ -9,7 +9,7 @@
 import UIKit
 import FlexboxLayout
 
-class ViewController: UIViewController {
+class ViewControllerWithoutComponent: UIViewController {
     
     var treeView: UIView? = nil
     var toggle = false
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
             }, children: [
                 
                 UIView().configure({
-                    $0.backgroundColor = UIColor.g
+                    $0.backgroundColor = UIColor.a
                     $0.layer.cornerRadius = 27.0
                     $0.style.dimensions = (54, 54)
                     $0.style.margin = defaultMargin
@@ -100,10 +100,6 @@ class ViewController: UIViewController {
         self.layout()
     }
     
-    func injected() {
-        prepareViewHierarchy()
-        render()
-    }
     
 }
 

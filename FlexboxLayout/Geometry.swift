@@ -10,9 +10,10 @@ import Foundation
 
 #if os(iOS)
     import UIKit
-    
+    public typealias EdgeInsets = UIEdgeInsets
 #else
     import AppKit
+    public typealias EdgeInsets = NSEdgeInsets
 #endif
 
 extension Node {
