@@ -14,7 +14,7 @@ import FlexboxLayout
 /// - See the tableview example if you want to implement a list is scalable
 class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegate {
     
-    let n = 25
+    let n = 10
     var wrapper: UIView!
     var posts: [Post]!
     
@@ -34,7 +34,7 @@ class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegat
         self.createPosts()
         
         // creates 'n' components
-        var children = [PostComponentView]()
+        var children = [ComponentView]()
         for i in 0..<n {
             children.append(PostComponentView().configure({
                 
@@ -45,6 +45,15 @@ class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegat
                 $0.style.margin = (8.0, 8.0, 8.0, 8.0, 8.0, 8.0)
                 $0.style.maxDimensions = (Undefined, Undefined)
             }))
+            
+            children.append(LikesComponentView().configure({
+                
+                $0.state = self.posts[i]
+                
+                // we can ovverride the default configuration of the component in here
+                $0.defaultConfiguration()
+            }))
+            
         }
         
         // we layout the component view as part of a flexbox tree

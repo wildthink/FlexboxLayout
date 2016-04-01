@@ -64,7 +64,14 @@ extension FlexboxView where Self: ViewType {
     /// Re-configure the view and re-compute the flexbox layout
     public func render(bounds: CGSize = CGSize.undefined) {
         
+        #if os(iOS)
+            if let componentCell = self as? ComponentCell {
+                componentCell.renderComponent(bounds)
+            }
+        #endif
+        
         func preRender(view: ViewType) {
+            view.preRender()
             for subview in view.subviews {
                 preRender(subview)
             }
@@ -95,8 +102,6 @@ extension FlexboxView where Self: ViewType {
             print(String(format: "- warning: render (%2f) ms.", arguments: [timeElapsed]))
         }
     }
-    
-
 }
 
 extension ViewType: FlexboxView {

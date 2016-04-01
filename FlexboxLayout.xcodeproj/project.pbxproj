@@ -9,10 +9,15 @@
 /* Begin PBXBuildFile section */
 		1621489B1CABF2EC0029CF93 /* PostComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1621489A1CABF2EC0029CF93 /* PostComponentView.swift */; };
 		1621489D1CABF5E70029CF93 /* WithComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1621489C1CABF5E70029CF93 /* WithComponent.swift */; };
+		1621489F1CAC1D890029CF93 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1621489E1CAC1D890029CF93 /* Extensions.swift */; };
+		162148A11CAC20CC0029CF93 /* LikesComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162148A01CAC20CC0029CF93 /* LikesComponentView.swift */; };
 		165B2BEA1C89E7B8009F81AB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165B2BE91C89E7B8009F81AB /* Extensions.swift */; };
 		166426351CA977EC00371BB0 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166426341CA977EC00371BB0 /* Geometry.swift */; };
-		166426371CAA723700371BB0 /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166426361CAA723700371BB0 /* ComponentView.swift */; };
+		166426371CAA723700371BB0 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166426361CAA723700371BB0 /* Components.swift */; };
 		1664263C1CAA789100371BB0 /* WithListOfComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1664263B1CAA789100371BB0 /* WithListOfComponents.swift */; };
+		167E861D1CAD3A5B0020A84B /* FlexboxLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C073791C889D09005EB8DD /* FlexboxLayout.framework */; };
+		167E861E1CAD3A5B0020A84B /* FlexboxLayout.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 16C073791C889D09005EB8DD /* FlexboxLayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		167E86231CAD584A0020A84B /* WithTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167E86221CAD584A0020A84B /* WithTableView.swift */; };
 		168E96441C89AF6B00AEEC7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168E96431C89AF6B00AEEC7F /* AppDelegate.swift */; };
 		168E96461C89AF6B00AEEC7F /* WithoutComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168E96451C89AF6B00AEEC7F /* WithoutComponent.swift */; };
 		168E96491C89AF6B00AEEC7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 168E96471C89AF6B00AEEC7F /* Main.storyboard */; };
@@ -26,13 +31,40 @@
 		16C073871C889D15005EB8DD /* Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 16C073851C889D15005EB8DD /* Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		167E861F1CAD3A5B0020A84B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 16C073701C889D09005EB8DD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 16C073781C889D09005EB8DD;
+			remoteInfo = FlexboxLayout;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		167E86211CAD3A5B0020A84B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				167E861E1CAD3A5B0020A84B /* FlexboxLayout.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1621489A1CABF2EC0029CF93 /* PostComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostComponentView.swift; sourceTree = "<group>"; };
 		1621489C1CABF5E70029CF93 /* WithComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WithComponent.swift; sourceTree = "<group>"; };
+		1621489E1CAC1D890029CF93 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		162148A01CAC20CC0029CF93 /* LikesComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikesComponentView.swift; sourceTree = "<group>"; };
 		165B2BE91C89E7B8009F81AB /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		166426341CA977EC00371BB0 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
-		166426361CAA723700371BB0 /* ComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
+		166426361CAA723700371BB0 /* Components.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		1664263B1CAA789100371BB0 /* WithListOfComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WithListOfComponents.swift; sourceTree = "<group>"; };
+		167E86221CAD584A0020A84B /* WithTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WithTableView.swift; sourceTree = "<group>"; };
 		168E96411C89AF6B00AEEC7F /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		168E96431C89AF6B00AEEC7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		168E96451C89AF6B00AEEC7F /* WithoutComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithoutComponent.swift; sourceTree = "<group>"; };
@@ -56,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				167E861D1CAD3A5B0020A84B /* FlexboxLayout.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,7 +109,9 @@
 				168E96451C89AF6B00AEEC7F /* WithoutComponent.swift */,
 				1621489C1CABF5E70029CF93 /* WithComponent.swift */,
 				1664263B1CAA789100371BB0 /* WithListOfComponents.swift */,
+				167E86221CAD584A0020A84B /* WithTableView.swift */,
 				1621489A1CABF2EC0029CF93 /* PostComponentView.swift */,
+				162148A01CAC20CC0029CF93 /* LikesComponentView.swift */,
 				168E96471C89AF6B00AEEC7F /* Main.storyboard */,
 				168E964A1C89AF6B00AEEC7F /* Assets.xcassets */,
 				168E964C1C89AF6B00AEEC7F /* LaunchScreen.storyboard */,
@@ -116,7 +151,8 @@
 				16C073881C889DB9005EB8DD /* Layout.swift */,
 				168E96531C89AF8800AEEC7F /* ViewType.swift */,
 				166426341CA977EC00371BB0 /* Geometry.swift */,
-				166426361CAA723700371BB0 /* ComponentView.swift */,
+				166426361CAA723700371BB0 /* Components.swift */,
+				1621489E1CAC1D890029CF93 /* Extensions.swift */,
 			);
 			path = FlexboxLayout;
 			sourceTree = "<group>";
@@ -143,10 +179,12 @@
 				168E963D1C89AF6B00AEEC7F /* Sources */,
 				168E963E1C89AF6B00AEEC7F /* Frameworks */,
 				168E963F1C89AF6B00AEEC7F /* Resources */,
+				167E86211CAD3A5B0020A84B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				167E86201CAD3A5B0020A84B /* PBXTargetDependency */,
 			);
 			name = Demo;
 			productName = Demo;
@@ -234,10 +272,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1621489D1CABF5E70029CF93 /* WithComponent.swift in Sources */,
+				162148A11CAC20CC0029CF93 /* LikesComponentView.swift in Sources */,
 				168E96461C89AF6B00AEEC7F /* WithoutComponent.swift in Sources */,
 				165B2BEA1C89E7B8009F81AB /* Extensions.swift in Sources */,
 				1664263C1CAA789100371BB0 /* WithListOfComponents.swift in Sources */,
 				16A1D4E21C930E3A001AEDD7 /* main.m in Sources */,
+				167E86231CAD584A0020A84B /* WithTableView.swift in Sources */,
 				1621489B1CABF2EC0029CF93 /* PostComponentView.swift in Sources */,
 				168E96441C89AF6B00AEEC7F /* AppDelegate.swift in Sources */,
 			);
@@ -248,7 +288,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				16C073861C889D15005EB8DD /* Layout.c in Sources */,
-				166426371CAA723700371BB0 /* ComponentView.swift in Sources */,
+				1621489F1CAC1D890029CF93 /* Extensions.swift in Sources */,
+				166426371CAA723700371BB0 /* Components.swift in Sources */,
 				168E96571C89B32F00AEEC7F /* Layout.swift in Sources */,
 				168E96581C89B32F00AEEC7F /* ViewType.swift in Sources */,
 				166426351CA977EC00371BB0 /* Geometry.swift in Sources */,
@@ -256,6 +297,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		167E86201CAD3A5B0020A84B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 16C073781C889D09005EB8DD /* FlexboxLayout */;
+			targetProxy = 167E861F1CAD3A5B0020A84B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		168E96471C89AF6B00AEEC7F /* Main.storyboard */ = {
@@ -282,9 +331,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.s.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -298,8 +348,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.s.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

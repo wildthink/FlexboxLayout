@@ -14,12 +14,15 @@ import FlexboxLayout
 struct Post: ComponentStateType {
     
     let title, text, time: String
+    let likes: Int
+    
 
     // generates a new random post
     init() {
         self.title = "TITLE"
         self.text = randomString(randomInt(20, max: 200))
         self.time = "88:88"
+        self.likes = randomInt(0, max: 10)
     }
 }
 
@@ -48,8 +51,7 @@ class PostComponentView: ComponentView {
         self.style.alignSelf = .Stretch
         self.style.flexDirection = .Row
         self.style.margin = (0.0, 8.0, 0.0, 8.0, 0.0, 0.0)
-        self.style.maxDimensions.width = 320
-    }
+     }
     
     /// - Note: This method is left for the subclasses to implement
     override func constructComponent(state: ComponentStateType)  {
