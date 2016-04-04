@@ -27,7 +27,7 @@ extension Node {
         let h = layout.dimension.height.isNormal ? CGFloat(layout.dimension.height) : 0
         
         let frame = CGRect(x: x, y: y, width: w, height: h)
-        view.applyFrame(frame)
+        view.applyFrame(CGRectIntegral(frame))
         
         if let children = self.children {
             for (s, node) in Zip2Sequence(view.subviews, children ?? [Node]()) {
@@ -102,26 +102,23 @@ private extension UIView {
     
     private func applyFrame(frame: CGRect) {
         
-        
-        // The view is configured before the layout
+        // There's an ongoing animation
         if self.internalStore.notAnimatable && self.layer.animationKeys()?.count > 0 {
             
             let duration = self.layer.animationKeys()?.map({ return self.layer.animationForKey($0)?.duration }).reduce(0.0, combine: { return max($0, Double($1 ?? 0.0))}) ?? 0
             
             self.alpha = 0;
-            self.frame = CGRectIntegral(frame)
+            self.frame = frame
             
             // TOFIX: workaround for views that are flagged as notAnimatable
             // Set the alpha back to 1 in the next runloop
             // - Note: Currently only volatile components are the one that are flagged as 
             // not animatable
-            UIView.animateWithDuration(duration, delay: duration, options: [], animations: {
-                self.alpha = 1
-            }, completion: nil)
+            UIView.animateWithDuration(duration, delay: duration, options: [], animations: { self.alpha = 1 }, completion: nil)
             
-            
+        // Not animated
         } else {
-            self.frame = CGRectIntegral(frame)
+            self.frame = frame
         }
     }
 }

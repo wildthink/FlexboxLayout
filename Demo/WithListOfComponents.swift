@@ -14,7 +14,7 @@ import FlexboxLayout
 /// - See the tableview example if you want to implement a list is scalable
 class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegate {
     
-    let n = 10
+    let n = 6
     var wrapper: UIView!
     var posts: [Post]!
     
@@ -61,7 +61,7 @@ class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegat
             
             $0.style.flexDirection = .Column
             $0.style.justifyContent = .FlexStart
-            $0.style.alignItems = .Center
+            $0.style.alignItems = .FlexStart
             $0.style.dimensions = ~self.view.bounds.size
             
         }, children:children)

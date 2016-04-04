@@ -22,7 +22,7 @@ struct Post: ComponentStateType {
         self.title = "TITLE"
         self.text = randomString(randomInt(20, max: 200))
         self.time = "88:88"
-        self.likes = randomInt(0, max: 10)
+        self.likes = randomInt(0, max: 4)
     }
 }
 

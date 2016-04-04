@@ -14,6 +14,10 @@
 
     //MARK: - ComponentView
     
+    /// When designing interfaces, break down the common design elements into reusable components 
+    /// with well-defined interfaces.
+    /// That way, the next time you need to build some UI, you can write much less code. 
+    /// This means faster development time, fewer bugs, and fewer bytes down the wire.
     public class ComponentView: ViewType {
         
         /// The state of this component
@@ -68,7 +72,10 @@
             return self.bounds.size ?? CGSize.undefined
         }
     }
-        
+    
+    /// Volatile components flush their view hierarchy at every call of 'render'.
+    /// They're less performant but useful when the view hierarchy is dynamic and depends from 
+    /// some property of the state. (e.g. dynamic number of children)
     public class VolatileComponentView: ComponentView {
         
         public override init() {
@@ -84,7 +91,7 @@
         
         /// The volatile component view will recreate is subviews at every render call
         /// Therefore the old subviews have to be removed
-        func __preRender() {
+        func preRender() {
             
             let configurationClosure = self.internalStore.configureClosure
             
@@ -99,6 +106,10 @@
 
     }
 
+    /// Wraps a component in a 'UITableViewCell'.
+    /// Set the state for the component through the 'state' property and invoke 'render' 
+    /// to render the underlying component.
+    /// - Note: See the 'UITableView' extension.
     public class ComponentCell: UITableViewCell {
         
         /// The internal component

@@ -65,39 +65,28 @@ extension FlexboxView where Self: ViewType {
     public func render(bounds: CGSize = CGSize.undefined) {
         
         #if os(iOS)
-            if let componentCell = self as? ComponentCell {
-                componentCell.renderComponent(bounds)
-            }
+            if let cell = self as? ComponentCell { cell.renderComponent(bounds) }
         #endif
         
         func preRender(view: ViewType) {
             view.preRender()
-            for subview in view.subviews {
-                preRender(subview)
-            }
+            for subview in view.subviews { preRender(subview) }
         }
         
         func postRender(view: ViewType) {
             view.postRender()
-            for subview in view.subviews {
-                postRender(subview)
-            }
+            for subview in view.subviews { postRender(subview) }
         }
         
         let startTime = CFAbsoluteTimeGetCurrent()
         
         preRender(self)
-        
-        // configure the view tree
         self.configure()
-        
-        // runs the flexbox engine
         self.layout(bounds)
-        
-        let timeElapsed = (CFAbsoluteTimeGetCurrent() - startTime)*1000
-        
         postRender(self)
         
+        let timeElapsed = (CFAbsoluteTimeGetCurrent() - startTime)*1000
+
         // - Note: 60fps means you need to render a frame every ~16ms to not drop any frames.
         // This is even more important when used inside a cell.
         if timeElapsed > 16 {
@@ -278,5 +267,5 @@ extension ViewType {
 }
 
 private var __internalStoreHandle: UInt8 = 0
-var __flexNodeHandle: UInt8 = 0
+private var __flexNodeHandle: UInt8 = 0
 

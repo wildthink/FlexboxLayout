@@ -20,16 +20,27 @@ class LikesComponentView: VolatileComponentView {
     override func defaultConfiguration() {
         self.style.flexDirection = .Row
         self.style.alignItems = .Center
-        self.style.justifyContent = .Center
+        self.style.justifyContent = .FlexStart
     }
     
     /// - Note: This method is left for the subclasses to implement
     override func constructComponent(state: ComponentStateType)  {
         
         var children = [UIView]()
+        
+        children.append(UILabel().configure({
+            $0.text = "\(self.post!.likes) LIKES "
+            $0.textAlignment = .Left
+            $0.font = UIFont.systemFontOfSize(12, weight: UIFontWeightBold)
+            $0.hidden = self.post!.likes <= 0
+            $0.style.alignSelf = .Center
+            $0.style.justifyContent = .FlexStart
+            $0.style.margin.start = 16.0
+        }))
+        
         for _ in 0..<(self.post?.likes ?? 0) {
             children.append(UIView().configure({
-                $0.backgroundColor = UIColor.d
+                $0.backgroundColor = [UIColor.d, UIColor.b, UIColor.c, UIColor.f][randomInt(0, max: 3)]
                 $0.layer.cornerRadius = 12.0
                 $0.style.dimensions = (24, 24)
                 $0.style.justifyContent = .Center

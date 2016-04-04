@@ -20,7 +20,7 @@
             // The volatile component view will recreate is subviews at every render call
             // Therefore the old subviews have to be removed
             if let volatileComponentView = self as? VolatileComponentView {
-                volatileComponentView.__preRender()
+                volatileComponentView.preRender()
             }
         }
         
@@ -35,7 +35,7 @@
                 if let _ = self as? UITableView { return }
                 if let _ = self as? UICollectionView { return }
                 
-                scrollView.__postRender()
+                scrollView.postRender()
             }
         }
     }
@@ -43,7 +43,7 @@
     extension UIScrollView {
         
         /// Calculates the new 'contentSize'
-        func __postRender() {
+        func postRender() {
             
             var x: CGFloat = 0
             var y: CGFloat = 0
