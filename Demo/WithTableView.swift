@@ -34,7 +34,7 @@ class ViewControllerWithTableView: UIViewController, UITableViewDataSource, UITa
         super.viewDidLoad()
         self.createPosts()
         
-        self.tableView = UITableView(frame: self.view.bounds)
+        self.tableView = ComponentTableView(frame: self.view.bounds)
         self.tableView.backgroundColor = UIColor.a
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -55,7 +55,7 @@ class ViewControllerWithTableView: UIViewController, UITableViewDataSource, UITa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.posts[indexPath.row] = Post()
-        self.tableView.refreshComponentAtIndexPath(indexPath)
+        self.tableView.renderComponentAtIndexPath(indexPath)
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

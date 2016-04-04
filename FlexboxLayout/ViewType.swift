@@ -88,16 +88,18 @@ extension FlexboxView where Self: ViewType {
         
         preRender(self)
         
-        //configure the view tree
+        // configure the view tree
         self.configure()
         
-        //runs the flexbox engine
+        // runs the flexbox engine
         self.layout(bounds)
         
         let timeElapsed = (CFAbsoluteTimeGetCurrent() - startTime)*1000
         
         postRender(self)
         
+        // - Note: 60fps means you need to render a frame every ~16ms to not drop any frames.
+        // This is even more important when used inside a cell.
         if timeElapsed > 16 {
             print(String(format: "- warning: render (%2f) ms.", arguments: [timeElapsed]))
         }
@@ -136,9 +138,9 @@ extension ViewType: FlexboxView {
                     var size = CGSize.zero
 
                     #if os(iOS)
-                        
                         if let _ = self as? ComponentView {
-                            //a componentview is a flexbox node
+                            //a componentview is a flexbox node therefore we piggy back on the 
+                            //flexbox engine to layout it
                             
                         } else {
                             size = self.sizeThatFits(CGSize(width: CGFloat(width), height: CGFloat(height)))
@@ -146,7 +148,6 @@ extension ViewType: FlexboxView {
                                 size = self.intrinsicContentSize()
                             }
                         }
-
                     #else
                         if let control = self as? NSControl {
                             size = CGSize(width: -1, height: -1)
@@ -252,6 +253,9 @@ extension ViewType: FlexboxView {
 /// Support structure for the view
 internal class InternalViewStore {
     
+    /// Render will always be called with animation disabled
+    var notAnimatable: Bool = false
+    
     /// The configuration closure passed as argument
     var configureClosure: ((Void) -> (Void))?
 }
@@ -274,5 +278,5 @@ extension ViewType {
 }
 
 private var __internalStoreHandle: UInt8 = 0
-private var __flexNodeHandle: UInt8 = 0
+var __flexNodeHandle: UInt8 = 0
 

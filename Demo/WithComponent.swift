@@ -42,7 +42,7 @@ class ViewControllerWithComponent: UIViewController, PostComponentDelegate {
         self.component.center = self.view.center
     }
     
-    dynamic func postComponentDidPressButton(sender: UIButton) {
+    func componentDidPressButton(component: PostComponentView, state: Post) {
         
         // a new random post
         self.state = Post()

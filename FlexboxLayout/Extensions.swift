@@ -64,13 +64,27 @@
     extension UITableView {
         
         /// Refreshes the component at the given index path
-        public func refreshComponentAtIndexPath(indexPath: NSIndexPath) {
+        public func renderComponentAtIndexPath(indexPath: NSIndexPath) {
             self.beginUpdates()
             self.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             self.endUpdates()
         }
         
+        /// Re-renders all the compoents currently visible on screen.
+        /// - Note: Call this method whenever the table view changes its bounds/size.
+        public func renderVisibleComponents() {
+            for cell in self.visibleCells {
+                if let componentCell = cell as? ComponentCell {
+                    componentCell.render(CGSize(self.bounds.width))
+                }
+            }
+        }
+        
         /// Internal store for this view
+        /// - Note: It contains all the component prototypes used to calculate the height
+        /// of the cells. 
+        /// It is recommended to implement 'estimatedHeightForRowAtIndexPath' in your data-source in order to 
+        /// improve the performance when loading the cells.
         private var prototypes: [String: ComponentView] {
             get {
                 guard let store = objc_getAssociatedObject(self, &__internalStoreHandle) as? [String: ComponentView] else {
@@ -88,29 +102,39 @@
             }
         }
         
-        /// Register the component for the given identifier
+        /// Register the component for the given identifier.
+        /// - Note: This means that this instance will be used as prototype for calculating the height of the 
+        /// cells with the same reuse identifier.
         public func registerPrototype(reuseIdentifier: String, component: ComponentView) {
             self.prototypes[reuseIdentifier] = component
         }
         
-        /// Rerturns the height for the component with the given reused identifier
+        /// Returns the height for the component with the given reused identifier
+        ///- Note: Make sure the method 'registerPrototype' has been called before with the desired reuse identifier
         public func heightForCellWithState(reuseIdentifier: String, state: ComponentStateType) -> CGFloat {
             
-            guard let prototype = prototypes[reuseIdentifier] else {
-                return 0
-            }
+            // no prototype
+            guard let prototype = prototypes[reuseIdentifier] else { return 0 }
             
+            //use the prototype to calculate the height
             prototype.state = state
             prototype.render(CGSize(width: self.bounds.size.width, height: CGFloat(Undefined)))
-            
             var size = prototype.bounds.size
             size.height += prototype.frame.origin.y + CGFloat(prototype.style.margin.top) + CGFloat(prototype.style.margin.bottom)
             let height = size.height
             
             return height
         }
-    
     }
-
+    
+    public class ComponentTableView: UITableView {
+        
+        /// Re-render the visible elements when the table view has changed its size
+        override public func layoutSubviews() {
+            super.layoutSubviews()
+            self.renderVisibleComponents()
+        }
+        
+    }
 
 #endif

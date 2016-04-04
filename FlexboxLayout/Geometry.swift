@@ -18,14 +18,16 @@ import Foundation
 
 extension Node {
     
-    ///Apply the layout to the given view hierarchy.
+    /// Apply the layout to the given view hierarchy.
     public func apply(view: ViewType) {
         
         let x = layout.position.left.isNormal ? CGFloat(layout.position.left) : 0
         let y = layout.position.top.isNormal ? CGFloat(layout.position.top) : 0
         let w = layout.dimension.width.isNormal ? CGFloat(layout.dimension.width) : 0
         let h = layout.dimension.height.isNormal ? CGFloat(layout.dimension.height) : 0
-        view.frame = CGRectIntegral(CGRect(x: x, y: y, width: w, height: h))
+        
+        let frame = CGRect(x: x, y: y, width: w, height: h)
+        view.applyFrame(frame)
         
         if let children = self.children {
             for (s, node) in Zip2Sequence(view.subviews, children ?? [Node]()) {
@@ -52,14 +54,25 @@ public extension CGSize {
     }
 }
 
-public extension Float {
+prefix operator ~ {}
 
-    var isDefined: Bool {
-        return self > 0 && self < 4096
-    }
+public prefix func ~(number: CGFloat) -> Float {
+    return Float(number)
 }
 
-//MARK: Utils
+public prefix func ~(size: CGSize) -> Dimension {
+    return (width: ~size.width, height: ~size.height)
+}
+
+public prefix func ~(insets: EdgeInsets) -> Inset {
+    return (left: ~insets.left, top: ~insets.top, right: ~insets.right, bottom: ~insets.bottom, start: ~insets.left, end: ~insets.right)
+}
+
+//MARK: - Private
+
+extension Float {
+    var isDefined: Bool { return self > 0 && self < 4096 }
+}
 
 func zeroIfNan(value: Float) -> CGFloat {
     return value.isDefined ? CGFloat(value) : 0
@@ -85,18 +98,34 @@ func sizeMaxIfNan(size: Dimension) -> CGSize {
     return CGSize(width: CGFloat(maxIfNaN(size.0)), height: CGFloat(maxIfNaN(size.1)))
 }
 
-prefix operator ~ {}
-
-public prefix func ~(number: CGFloat) -> Float {
-    return Float(number)
+private extension UIView {
+    
+    private func applyFrame(frame: CGRect) {
+        
+        
+        // The view is configured before the layout
+        if self.internalStore.notAnimatable && self.layer.animationKeys()?.count > 0 {
+            
+            let duration = self.layer.animationKeys()?.map({ return self.layer.animationForKey($0)?.duration }).reduce(0.0, combine: { return max($0, Double($1 ?? 0.0))}) ?? 0
+            
+            self.alpha = 0;
+            self.frame = CGRectIntegral(frame)
+            
+            // TOFIX: workaround for views that are flagged as notAnimatable
+            // Set the alpha back to 1 in the next runloop
+            // - Note: Currently only volatile components are the one that are flagged as 
+            // not animatable
+            UIView.animateWithDuration(duration, delay: duration, options: [], animations: {
+                self.alpha = 1
+            }, completion: nil)
+            
+            
+        } else {
+            self.frame = CGRectIntegral(frame)
+        }
+    }
 }
 
-public prefix func ~(size: CGSize) -> Dimension {
-    return (width: ~size.width, height: ~size.height)
-}
 
-public prefix func ~(insets: EdgeInsets) -> Inset {
-    return (left: ~insets.left, top: ~insets.top, right: ~insets.right, bottom: ~insets.bottom, start: ~insets.left, end: ~insets.right)
-}
 
 

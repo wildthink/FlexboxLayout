@@ -39,17 +39,17 @@ class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegat
             children.append(PostComponentView().configure({
                 
                 $0.state = self.posts[i]
-                
+
                 // we can ovverride the default configuration of the component in here
                 $0.defaultConfiguration()
                 $0.style.margin = (8.0, 8.0, 8.0, 8.0, 8.0, 8.0)
                 $0.style.maxDimensions = (Undefined, Undefined)
+                $0.delegate = self
             }))
             
             children.append(LikesComponentView().configure({
-                
                 $0.state = self.posts[i]
-                
+
                 // we can ovverride the default configuration of the component in here
                 $0.defaultConfiguration()
             }))
@@ -79,15 +79,14 @@ class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegat
         self.wrapper?.render(self.view.bounds.size)
     }
     
-    dynamic func postComponentDidPressButton(sender: UIButton) {
+    func componentDidPressButton(component: PostComponentView, state: Post) {
         
-        // when the button is pressed we generate another post and re-render the component
-        self.createPosts()
-        
-        UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: [], animations: {
-            self.render()
-
-            }, completion: nil)
-        
+        if let index = self.posts.indexOf({ $0.text == state.text }) {
+            self.posts[index] = Post()
+        }
+       
+        UIView.animateWithDuration(0.3) {
+            self.wrapper.render()
+        }
     }
 }

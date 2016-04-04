@@ -22,17 +22,17 @@
                 self._updateState()
             }
         }
-        
+                
         /// The configuration of this root node.
         /// - Note: Only the appearance and the node's style configuration should
         /// specified in here
         public func defaultConfiguration() {
-            
+            fatalError("Subclasses must implement the default configuration for this component.")
         }
         
         /// - Note: This method is left for the subclasses to implement
         public func constructComponent(state: ComponentStateType)  {
-            
+            fatalError("Subclasses must implement the component construction method.")
         }
 
         public init() {
@@ -43,7 +43,6 @@
             super.init(coder: aDecoder)
         }
 
-        /// Update the state closure
         private func _updateState() {
             guard let state = self.state else {
                 return
@@ -70,16 +69,35 @@
         }
     }
         
-
     public class VolatileComponentView: ComponentView {
+        
+        public override init() {
+            super.init()
+            self.internalStore.notAnimatable = true
+        }
+        
+        required public init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+            self.internalStore.notAnimatable = true
+        }
+
         
         /// The volatile component view will recreate is subviews at every render call
         /// Therefore the old subviews have to be removed
         func __preRender() {
-            //TODO
+            
+            let configurationClosure = self.internalStore.configureClosure
+            
+            for view in self.subviews {
+                view.removeFromSuperview()
+            }
+            
+            configurationClosure?()
+            self.constructComponent(self.state!)
+            self.internalStore.configureClosure = configurationClosure
         }
-    }
 
+    }
 
     public class ComponentCell: UITableViewCell {
         
@@ -104,8 +122,7 @@
             fatalError("init(coder:) has not been implemented")
         }
         
-        /// Specialisation of 'render'
-        internal func renderComponent(size: CGSize? = nil) {
+        func renderComponent(size: CGSize? = nil) {
             let s = size ?? self.superview?.bounds.size ?? CGSize.undefined
             self.component._updateState()
             self.component.render(s)
