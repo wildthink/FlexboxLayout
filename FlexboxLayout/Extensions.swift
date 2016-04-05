@@ -13,28 +13,19 @@
         
     extension FlexboxView where Self: ViewType {
         
-        /// Called before the configure block is called
-        /// - Note: Subclasses to implement this method if required
         internal func preRender() {
             
             // The volatile component view will recreate is subviews at every render call
             // Therefore the old subviews have to be removed
-            if let volatileComponentView = self as? VolatileComponentView {
-                volatileComponentView.preRender()
-            }
+            if let volatileComponentView = self as? VolatileComponentView { volatileComponentView.preRender() }
         }
         
-        /// Called before the layout is performed
-        /// - Note: Subclasses to implement this method if required
         internal func postRender() {
             
             // content-size calculation for the scrollview should be applied after the layout
             if let scrollView = self as? UIScrollView {
-                
-                //failsafe
                 if let _ = self as? UITableView { return }
                 if let _ = self as? UICollectionView { return }
-                
                 scrollView.postRender()
             }
         }
@@ -42,24 +33,17 @@
 
     extension UIScrollView {
         
-        /// Calculates the new 'contentSize'
         private func postRender() {
-            
             var x: CGFloat = 0
             var y: CGFloat = 0
-            
             for subview in self.subviews {
                 x = CGRectGetMaxX(subview.frame) > x ? CGRectGetMaxX(subview.frame) : x
                 y = CGRectGetMaxY(subview.frame) > y ? CGRectGetMaxY(subview.frame) : y
             }
-            
             self.contentSize = CGSize(width: x, height: y)
             self.scrollEnabled = true
         }
     }
-            
-    private var __internalStoreHandle: UInt8 = 0
-    private var __cacheHandle: UInt8 = 0
 
     extension UITableView {
         
@@ -74,9 +58,7 @@
         /// - Note: Call this method whenever the table view changes its bounds/size.
         public func renderVisibleComponents() {
             for cell in self.visibleCells {
-                if let componentCell = cell as? ComponentCell {
-                    componentCell.render(CGSize(self.bounds.width))
-                }
+                if let c = cell as? ComponentCell { c.render(CGSize(self.bounds.width)) }
             }
         }
         
@@ -88,8 +70,6 @@
         private var prototypes: [String: ComponentView] {
             get {
                 guard let store = objc_getAssociatedObject(self, &__internalStoreHandle) as? [String: ComponentView] else {
-                    
-                    //lazily creates the node
                     let store = [String: ComponentView]()
                     objc_setAssociatedObject(self, &__internalStoreHandle, store, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
                     return store
@@ -98,7 +78,6 @@
             }
             set {
                 objc_setAssociatedObject(self, &__internalStoreHandle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                
             }
         }
         
@@ -126,5 +105,8 @@
             return height
         }
     }
+    
+    private var __internalStoreHandle: UInt8 = 0
+    private var __cacheHandle: UInt8 = 0
 
 #endif

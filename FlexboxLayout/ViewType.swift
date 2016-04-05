@@ -115,8 +115,6 @@ extension ViewType: FlexboxView {
                 
                 //lazily creates the node
                 let newNode = Node()
-                
-
                 newNode.measure = { (node, width, height) -> Dimension in
                     
                     var opacityIsZero = false
