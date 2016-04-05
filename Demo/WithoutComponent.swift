@@ -90,14 +90,9 @@ class ViewControllerWithoutComponent: UIViewController {
         self.render()
     }
     
-    func layout() {
-        self.treeView?.layout()
-        self.treeView?.center = self.view.center
-    }
-    
     func render() {
-        self.treeView?.configure()
-        self.layout()
+        self.treeView?.render()
+        self.treeView?.center = self.view.center
     }
     
     

@@ -53,17 +53,14 @@ class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegat
                 // we can ovverride the default configuration of the component in here
                 $0.defaultConfiguration()
             }))
-            
         }
         
         // we layout the component view as part of a flexbox tree
         self.wrapper = UIScrollView().configure({
-            
             $0.style.flexDirection = .Column
             $0.style.justifyContent = .FlexStart
             $0.style.alignItems = .FlexStart
             $0.style.dimensions = ~self.view.bounds.size
-            
         }, children:children)
         
         self.view.addSubview(wrapper)
@@ -81,6 +78,7 @@ class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegat
     
     func componentDidPressButton(component: PostComponentView, state: Post) {
         
+        // change the posts associated to the pressed button
         if let index = self.posts.indexOf({ $0.text == state.text }) {
             self.posts[index] = Post()
         }

@@ -43,7 +43,7 @@
     extension UIScrollView {
         
         /// Calculates the new 'contentSize'
-        func postRender() {
+        private func postRender() {
             
             var x: CGFloat = 0
             var y: CGFloat = 0
@@ -125,16 +125,6 @@
             
             return height
         }
-    }
-    
-    public class ComponentTableView: UITableView {
-        
-        /// Re-render the visible elements when the table view has changed its size
-        override public func layoutSubviews() {
-            super.layoutSubviews()
-            self.renderVisibleComponents()
-        }
-        
     }
 
 #endif

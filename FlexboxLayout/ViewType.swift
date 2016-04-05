@@ -44,23 +44,6 @@ extension FlexboxView where Self: ViewType {
         return self
     }
     
-    /// Recursively apply the configuration closure to this view tree
-    public func configure() {
-        func configure(view: ViewType) {
-            
-            //runs the configure closure
-            view.internalStore.configureClosure?()
-            
-            //calls it recursively on the subviews
-            for subview in view.subviews {
-                configure(subview)
-            }
-        }
-        
-        //the view is configured before the layout
-        configure(self)
-    }
-    
     /// Re-configure the view and re-compute the flexbox layout
     public func render(bounds: CGSize = CGSize.undefined) {
         
@@ -86,24 +69,47 @@ extension FlexboxView where Self: ViewType {
         postRender(self)
         
         let timeElapsed = (CFAbsoluteTimeGetCurrent() - startTime)*1000
-
+        
         // - Note: 60fps means you need to render a frame every ~16ms to not drop any frames.
         // This is even more important when used inside a cell.
         if timeElapsed > 16 {
             print(String(format: "- warning: render (%2f) ms.", arguments: [timeElapsed]))
         }
     }
+    
+    /// Recursively apply the configuration closure to this view tree
+    private func configure() {
+        func configure(view: ViewType) {
+            
+            //runs the configure closure
+            view.internalStore.configureClosure?()
+            
+            //calls it recursively on the subviews
+            for subview in view.subviews {
+                configure(subview)
+            }
+        }
+        
+        //the view is configured before the layout
+        configure(self)
+    }
+
 }
 
 extension ViewType: FlexboxView {
     
-    ///Wether this view has or not a flexbox node associated
-    public var hasFlexNode: Bool {
+    /// The style for this flexbox node
+    public var style: Style {
+        return self.flexNode.style
+    }
+    
+    /// Wether this view has or not a flexbox node associated
+    internal var hasFlexNode: Bool {
         return (objc_getAssociatedObject(self, &__flexNodeHandle) != nil) 
     }
     
     /// Returns the associated node for this view.
-    public var flexNode: Node {
+    internal var flexNode: Node {
         get {
             guard let node = objc_getAssociatedObject(self, &__flexNodeHandle) as? Node else {
                 
@@ -194,15 +200,8 @@ extension ViewType: FlexboxView {
             objc_setAssociatedObject(self, &__flexNodeHandle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
-    
-    /// The style for this flexbox node
-    public var style: Style {
-        return self.flexNode.style
-    }
-    
-    
-    /// Recursively computes the layout of this view
-    public func layout(bounds: CGSize = CGSize.undefined) {
+
+    private func layout(bounds: CGSize = CGSize.undefined) {
         
         func prepare(view: ViewType) {
             for subview in view.subviews.filter({ return $0.hasFlexNode }) {
@@ -237,27 +236,25 @@ extension ViewType: FlexboxView {
     }
 }
 
-//MARK: Internals
-
 /// Support structure for the view
-internal class InternalViewStore {
+internal class ViewStore {
     
     /// Render will always be called with animation disabled
-    var notAnimatable: Bool = false
+    internal var notAnimatable: Bool = false
     
     /// The configuration closure passed as argument
-    var configureClosure: ((Void) -> (Void))?
+    internal var configureClosure: ((Void) -> (Void))?
 }
 
 extension ViewType {
     
     /// Internal store for this view
-    internal var internalStore: InternalViewStore {
+    internal var internalStore: ViewStore {
         get {
-            guard let store = objc_getAssociatedObject(self, &__internalStoreHandle) as? InternalViewStore else {
+            guard let store = objc_getAssociatedObject(self, &__internalStoreHandle) as? ViewStore else {
                 
                 //lazily creates the node
-                let store = InternalViewStore()
+                let store = ViewStore()
                 objc_setAssociatedObject(self, &__internalStoreHandle, store, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
                 return store
             }

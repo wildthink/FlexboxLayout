@@ -105,18 +105,12 @@
 		168E96421C89AF6B00AEEC7F /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				16CCCF751CB2B83900778777 /* PostExamples */,
 				168E96431C89AF6B00AEEC7F /* AppDelegate.swift */,
-				168E96451C89AF6B00AEEC7F /* WithoutComponent.swift */,
-				1621489C1CABF5E70029CF93 /* WithComponent.swift */,
-				1664263B1CAA789100371BB0 /* WithListOfComponents.swift */,
-				167E86221CAD584A0020A84B /* WithTableView.swift */,
-				1621489A1CABF2EC0029CF93 /* PostComponentView.swift */,
-				162148A01CAC20CC0029CF93 /* LikesComponentView.swift */,
 				168E96471C89AF6B00AEEC7F /* Main.storyboard */,
 				168E964A1C89AF6B00AEEC7F /* Assets.xcassets */,
 				168E964C1C89AF6B00AEEC7F /* LaunchScreen.storyboard */,
 				168E964F1C89AF6B00AEEC7F /* Info.plist */,
-				165B2BE91C89E7B8009F81AB /* Extensions.swift */,
 				16A1D4E11C930E3A001AEDD7 /* main.m */,
 				16A1D4E01C930E3A001AEDD7 /* Demo-Bridging-Header.h */,
 			);
@@ -155,6 +149,20 @@
 				1621489E1CAC1D890029CF93 /* Extensions.swift */,
 			);
 			path = FlexboxLayout;
+			sourceTree = "<group>";
+		};
+		16CCCF751CB2B83900778777 /* PostExamples */ = {
+			isa = PBXGroup;
+			children = (
+				165B2BE91C89E7B8009F81AB /* Extensions.swift */,
+				168E96451C89AF6B00AEEC7F /* WithoutComponent.swift */,
+				1621489C1CABF5E70029CF93 /* WithComponent.swift */,
+				1664263B1CAA789100371BB0 /* WithListOfComponents.swift */,
+				167E86221CAD584A0020A84B /* WithTableView.swift */,
+				1621489A1CABF2EC0029CF93 /* PostComponentView.swift */,
+				162148A01CAC20CC0029CF93 /* LikesComponentView.swift */,
+			);
+			name = PostExamples;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

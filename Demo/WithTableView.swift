@@ -34,7 +34,7 @@ class ViewControllerWithTableView: UIViewController, UITableViewDataSource, UITa
         super.viewDidLoad()
         self.createPosts()
         
-        self.tableView = ComponentTableView(frame: self.view.bounds)
+        self.tableView = UITableView(frame: self.view.bounds)
         self.tableView.backgroundColor = UIColor.a
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -47,6 +47,7 @@ class ViewControllerWithTableView: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLayoutSubviews() {
         self.tableView.frame = self.view.bounds
+        self.tableView.renderVisibleComponents()
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

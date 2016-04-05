@@ -68,33 +68,35 @@ public prefix func ~(insets: EdgeInsets) -> Inset {
     return (left: ~insets.left, top: ~insets.top, right: ~insets.right, bottom: ~insets.bottom, start: ~insets.left, end: ~insets.right)
 }
 
-//MARK: - Private
-
 extension Float {
-    var isDefined: Bool { return self > 0 && self < 4096 }
+    internal var isDefined: Bool {
+        return self > 0 && self < 4096
+    }
 }
 
-func zeroIfNan(value: Float) -> CGFloat {
+//MARK: - Internal and Private
+
+internal func zeroIfNan(value: Float) -> CGFloat {
     return value.isDefined ? CGFloat(value) : 0
 }
 
-func zeroIfNan(value: CGFloat) -> CGFloat {
+internal func zeroIfNan(value: CGFloat) -> CGFloat {
     return Float(value).isDefined ? value : 0
 }
 
-func maxIfNaN(value: Float) -> CGFloat {
+internal func maxIfNaN(value: Float) -> CGFloat {
     return value.isDefined ? CGFloat(value) : CGFloat(FLT_MAX)
 }
 
-func sizeZeroIfNan(size: Dimension) -> CGSize {
+internal func sizeZeroIfNan(size: Dimension) -> CGSize {
     return CGSize(width: CGFloat(zeroIfNan(size.0)), height: CGFloat(zeroIfNan(size.1)))
 }
 
-func sizeZeroIfNan(size: CGSize) -> CGSize {
+internal func sizeZeroIfNan(size: CGSize) -> CGSize {
     return CGSize(width: CGFloat(zeroIfNan(size.width)), height: CGFloat(zeroIfNan(size.height)))
 }
 
-func sizeMaxIfNan(size: Dimension) -> CGSize {
+internal func sizeMaxIfNan(size: Dimension) -> CGSize {
     return CGSize(width: CGFloat(maxIfNaN(size.0)), height: CGFloat(maxIfNaN(size.1)))
 }
 
@@ -105,6 +107,7 @@ private extension UIView {
         // There's an ongoing animation
         if self.internalStore.notAnimatable && self.layer.animationKeys()?.count > 0 {
             
+            // Get the duration of the ongoing animation
             let duration = self.layer.animationKeys()?.map({ return self.layer.animationForKey($0)?.duration }).reduce(0.0, combine: { return max($0, Double($1 ?? 0.0))}) ?? 0
             
             self.alpha = 0;
@@ -112,8 +115,7 @@ private extension UIView {
             
             // TOFIX: workaround for views that are flagged as notAnimatable
             // Set the alpha back to 1 in the next runloop
-            // - Note: Currently only volatile components are the one that are flagged as 
-            // not animatable
+            // - Note: Currently only volatile components are the one that are flagged as not animatable
             UIView.animateWithDuration(duration, delay: duration, options: [], animations: { self.alpha = 1 }, completion: nil)
             
         // Not animated

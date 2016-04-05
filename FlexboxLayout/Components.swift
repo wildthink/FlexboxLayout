@@ -23,7 +23,7 @@
         /// The state of this component
         public var state: ComponentStateType? {
             didSet {
-                self._updateState()
+                self.didUpdateState()
             }
         }
                 
@@ -47,16 +47,11 @@
             super.init(coder: aDecoder)
         }
 
-        private func _updateState() {
-            guard let state = self.state else {
-                return
-            }
-            
-            //not initialised yet
+        private func didUpdateState() {
+            guard let state = self.state else { return }
             if !self.hasFlexNode {
                 self.constructComponent(state)
             }
-            
             return
         }
         
@@ -88,13 +83,10 @@
             self.internalStore.notAnimatable = true
         }
 
-        
         /// The volatile component view will recreate is subviews at every render call
         /// Therefore the old subviews have to be removed
         func preRender() {
-            
             let configurationClosure = self.internalStore.configureClosure
-            
             for view in self.subviews {
                 view.removeFromSuperview()
             }
@@ -103,13 +95,12 @@
             self.constructComponent(self.state!)
             self.internalStore.configureClosure = configurationClosure
         }
-
     }
 
     /// Wraps a component in a 'UITableViewCell'.
-    /// Set the state for the component through the 'state' property and invoke 'render' 
-    /// to render the underlying component.
+    /// Set the state for the component through the 'state' property and invoke 'render' to render the underlying component.
     /// - Note: See the 'UITableView' extension.
+    /// - Note: Call 'renderVisibleComponents' in 'UITableView' when the tableview bounds change.
     public class ComponentCell: UITableViewCell {
         
         /// The internal component
@@ -133,12 +124,11 @@
             fatalError("init(coder:) has not been implemented")
         }
         
-        func renderComponent(size: CGSize? = nil) {
+        internal func renderComponent(size: CGSize? = nil) {
             let s = size ?? self.superview?.bounds.size ?? CGSize.undefined
-            self.component._updateState()
+            self.component.didUpdateState()
             self.component.render(s)
         }
-        
     }
 
 #endif
