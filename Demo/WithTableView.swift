@@ -10,6 +10,14 @@ import Foundation
 import UIKit
 import FlexboxLayout
 
+class PostComponentCellView: PostComponentView {
+    
+    override func defaultConfiguration() {
+        super.defaultConfiguration()
+        self.style.minDimensions = (320, Undefined)
+    }
+}
+
 /// A 'ComponentView' can be used as a normal view at any point.
 /// Also you don't need to set a frame for it since it has its intrinsic content size.
 class ViewControllerWithTableView: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -41,13 +49,12 @@ class ViewControllerWithTableView: UIViewController, UITableViewDataSource, UITa
         
         self.view.addSubview(self.tableView )
         
-        self.tableView.registerPrototype(reuseIdentifier, component: PostComponentView())
-        self.tableView.reloadData()
+        self.tableView.registerPrototype(reuseIdentifier, component: PostComponentCellView())
     }
     
     override func viewDidLayoutSubviews() {
         self.tableView.frame = self.view.bounds
-        self.tableView.renderVisibleComponents()
+        self.tableView.reloadData()
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,7 +67,7 @@ class ViewControllerWithTableView: UIViewController, UITableViewDataSource, UITa
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: ComponentCell! = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier) as? ComponentCell ?? ComponentCell(reuseIdentifier: reuseIdentifier, component: PostComponentView())
+        let cell: ComponentCell! = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier) as? ComponentCell ?? ComponentCell(reuseIdentifier: reuseIdentifier, component: PostComponentCellView())
         cell.state = self.posts[indexPath.row]
         cell.render(CGSize(tableView.bounds.size.width))
         
