@@ -19,14 +19,16 @@ import CoreGraphics
 
 extension Node {
     
-    ///Apply the layout to the given view hierarchy.
+    /// Apply the layout to the given view hierarchy.
     public func apply(view: ViewType) {
         
         let x = layout.position.left.isNormal ? CGFloat(layout.position.left) : 0
         let y = layout.position.top.isNormal ? CGFloat(layout.position.top) : 0
         let w = layout.dimension.width.isNormal ? CGFloat(layout.dimension.width) : 0
         let h = layout.dimension.height.isNormal ? CGFloat(layout.dimension.height) : 0
-        view.frame = CGRectIntegral(CGRect(x: x, y: y, width: w, height: h))
+        
+        let frame = CGRect(x: x, y: y, width: w, height: h)
+        view.applyFrame(CGRectIntegral(frame))
         
         if let children = self.children {
             for (s, node) in Zip2Sequence(view.subviews, children ?? [Node]()) {
@@ -42,43 +44,15 @@ public extension CGSize {
     /// Undefined size
     public static let undefined = CGSize(width: CGFloat(Undefined), height: CGFloat(Undefined))
     
+    /// Convenience constructor
+    public init(_ width: CGFloat,_ height: CGFloat = CGFloat(Undefined)) {
+        self.init(width: width, height: height)
+    }
+    
     /// Returns true is this value is less than .19209290E-07F
-    var isZero: Bool {
+    public var isZero: Bool {
         return self.width < CGFloat(FLT_EPSILON) && self.height < CGFloat(FLT_EPSILON)
     }
-}
-
-public extension Float {
-
-    var isDefined: Bool {
-        return self > 0 && self < 4096
-    }
-}
-
-//MARK: Utils
-
-func zeroIfNan(value: Float) -> CGFloat {
-    return value.isDefined ? CGFloat(value) : 0
-}
-
-func zeroIfNan(value: CGFloat) -> CGFloat {
-    return Float(value).isDefined ? value : 0
-}
-
-func maxIfNaN(value: Float) -> CGFloat {
-    return value.isDefined ? CGFloat(value) : CGFloat(FLT_MAX)
-}
-
-func sizeZeroIfNan(size: Dimension) -> CGSize {
-    return CGSize(width: CGFloat(zeroIfNan(size.0)), height: CGFloat(zeroIfNan(size.1)))
-}
-
-func sizeZeroIfNan(size: CGSize) -> CGSize {
-    return CGSize(width: CGFloat(zeroIfNan(size.width)), height: CGFloat(zeroIfNan(size.height)))
-}
-
-func sizeMaxIfNan(size: Dimension) -> CGSize {
-    return CGSize(width: CGFloat(maxIfNaN(size.0)), height: CGFloat(maxIfNaN(size.1)))
 }
 
 prefix operator ~ {}
@@ -95,36 +69,90 @@ public prefix func ~(insets: EdgeInsets) -> Inset {
     return (left: ~insets.left, top: ~insets.top, right: ~insets.right, bottom: ~insets.bottom, start: ~insets.left, end: ~insets.right)
 }
 
-#if os(iOS)
-    
-    extension FlexboxView where Self: ViewType {
-        
-        /// Called before the configure block is called
-        /// - Note: Subclasses to implement this method if required
-        internal func preRender() {
+extension Float {
+    internal var isDefined: Bool {
+        return self > 0 && self < 4096
+    }
+}
 
-        }
+//MARK: - Internal and Private
+
+internal func zeroIfNan(value: Float) -> CGFloat {
+    return value.isDefined ? CGFloat(value) : 0
+}
+
+internal func zeroIfNan(value: CGFloat) -> CGFloat {
+    return Float(value).isDefined ? value : 0
+}
+
+internal func maxIfNaN(value: Float) -> CGFloat {
+    return value.isDefined ? CGFloat(value) : CGFloat(FLT_MAX)
+}
+
+internal func sizeZeroIfNan(size: Dimension) -> CGSize {
+    return CGSize(width: CGFloat(zeroIfNan(size.0)), height: CGFloat(zeroIfNan(size.1)))
+}
+
+internal func sizeZeroIfNan(size: CGSize) -> CGSize {
+    return CGSize(width: CGFloat(zeroIfNan(size.width)), height: CGFloat(zeroIfNan(size.height)))
+}
+
+internal func sizeMaxIfNan(size: Dimension) -> CGSize {
+    return CGSize(width: CGFloat(maxIfNaN(size.0)), height: CGFloat(maxIfNaN(size.1)))
+}
+
+#if os(iOS)
+    private extension UIView {
         
-        /// Called before the layout is performed
-        /// - Note: Subclasses to implement this method if required
-        internal func postRender() {
+        private func applyFrame(frame: CGRect) {
             
-            guard let scrollView = self as? UIScrollView else {
-                return
+            // There's an ongoing animation
+            if self.internalStore.notAnimatable && self.layer.animationKeys()?.count > 0 {
+                
+                // Get the duration of the ongoing animation
+                let duration = self.layer.animationKeys()?.map({ return self.layer.animationForKey($0)?.duration }).reduce(0.0, combine: { return max($0, Double($1 ?? 0.0))}) ?? 0
+                
+                self.alpha = 0;
+                self.frame = frame
+                
+                // TOFIX: workaround for views that are flagged as notAnimatable
+                // Set the alpha back to 1 in the next runloop
+                // - Note: Currently only volatile components are the one that are flagged as not animatable
+                UIView.animateWithDuration(duration, delay: duration, options: [], animations: { self.alpha = 1 }, completion: nil)
+                
+                // Not animated
+            } else {
+                self.frame = frame
             }
-            
-            var x: CGFloat = 0
-            var y: CGFloat = 0
-            
-            for subview in scrollView.subviews {
-                x = CGRectGetMaxX(subview.frame) > x ? CGRectGetMaxX(subview.frame) : x
-                y = CGRectGetMaxY(subview.frame) > y ? CGRectGetMaxY(subview.frame) : y
-            }
-            
-            scrollView.contentSize = CGSize(width: x, height: y)
-            scrollView.scrollEnabled = true
         }
     }
-    
+#else
+    private extension NSView {
+        
+        private func applyFrame(frame: CGRect) {
+            
+            // There's an ongoing animation
+            if self.internalStore.notAnimatable && (self.layer!.animationKeys()?.count)! > 0 {
+                
+                // Get the duration of the ongoing animation
+//                let duration = self.layer!.animationKeys()?.map({ return self.layer!.animationForKey($0)?.duration }).reduce(0.0, combine: { return max($0, Double($1 ?? 0.0))}) ?? 0
+                
+//                self.alpha = 0; jmj
+                self.frame = frame
+                
+                // TOFIX: workaround for views that are flagged as notAnimatable
+                // Set the alpha back to 1 in the next runloop
+                // - Note: Currently only volatile components are the one that are flagged as not animatable
+//                NSView.animateWithDuration(duration, delay: duration, options: [], animations: { self.alpha = 1 }, completion: nil)
+                
+                // Not animated
+            } else {
+                self.frame = frame
+            }
+        }
+    }
 #endif
+
+
+
 

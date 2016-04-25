@@ -14,7 +14,7 @@ import FlexboxLayout
 /// - See the tableview example if you want to implement a list is scalable
 class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegate {
     
-    let n = 25
+    let n = 6
     var wrapper: UIView!
     var posts: [Post]!
     
@@ -34,27 +34,33 @@ class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegat
         self.createPosts()
         
         // creates 'n' components
-        var children = [PostComponentView]()
+        var children = [ComponentView]()
         for i in 0..<n {
             children.append(PostComponentView().configure({
                 
                 $0.state = self.posts[i]
-                
+
                 // we can ovverride the default configuration of the component in here
                 $0.defaultConfiguration()
                 $0.style.margin = (8.0, 8.0, 8.0, 8.0, 8.0, 8.0)
                 $0.style.maxDimensions = (Undefined, Undefined)
+                $0.delegate = self
+            }))
+            
+            children.append(LikesComponentView().configure({
+                $0.state = self.posts[i]
+
+                // we can ovverride the default configuration of the component in here
+                $0.defaultConfiguration()
             }))
         }
         
         // we layout the component view as part of a flexbox tree
         self.wrapper = UIScrollView().configure({
-            
             $0.style.flexDirection = .Column
             $0.style.justifyContent = .FlexStart
-            $0.style.alignItems = .Center
+            $0.style.alignItems = .FlexStart
             $0.style.dimensions = ~self.view.bounds.size
-            
         }, children:children)
         
         self.view.addSubview(wrapper)
@@ -70,15 +76,15 @@ class ViewControllerWithListOfComponents: UIViewController, PostComponentDelegat
         self.wrapper?.render(self.view.bounds.size)
     }
     
-    dynamic func postComponentDidPressButton(sender: UIButton) {
+    func componentDidPressButton(component: PostComponentView, state: Post) {
         
-        // when the button is pressed we generate another post and re-render the component
-        self.createPosts()
-        
-        UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: [], animations: {
-            self.render()
-
-            }, completion: nil)
-        
+        // change the posts associated to the pressed button
+        if let index = self.posts.indexOf({ $0.text == state.text }) {
+            self.posts[index] = Post()
+        }
+       
+        UIView.animateWithDuration(0.3) {
+            self.wrapper.render()
+        }
     }
 }

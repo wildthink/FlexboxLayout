@@ -11,7 +11,6 @@
 		1621489D1CABF5E70029CF93 /* WithComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1621489C1CABF5E70029CF93 /* WithComponent.swift */; };
 		165B2BEA1C89E7B8009F81AB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165B2BE91C89E7B8009F81AB /* Extensions.swift */; };
 		166426351CA977EC00371BB0 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166426341CA977EC00371BB0 /* Geometry.swift */; };
-		166426371CAA723700371BB0 /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166426361CAA723700371BB0 /* ComponentView.swift */; };
 		1664263C1CAA789100371BB0 /* WithListOfComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1664263B1CAA789100371BB0 /* WithListOfComponents.swift */; };
 		168E96441C89AF6B00AEEC7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168E96431C89AF6B00AEEC7F /* AppDelegate.swift */; };
 		168E96461C89AF6B00AEEC7F /* WithoutComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168E96451C89AF6B00AEEC7F /* WithoutComponent.swift */; };
@@ -24,6 +23,12 @@
 		16C0737D1C889D09005EB8DD /* FlexboxLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 16C0737C1C889D09005EB8DD /* FlexboxLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		16C073861C889D15005EB8DD /* Layout.c in Sources */ = {isa = PBXBuildFile; fileRef = 16C073841C889D15005EB8DD /* Layout.c */; };
 		16C073871C889D15005EB8DD /* Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 16C073851C889D15005EB8DD /* Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		965856C11CCD785400ECA86C /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965856BF1CCD785400ECA86C /* Components.swift */; };
+		965856C21CCD785400ECA86C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965856C01CCD785400ECA86C /* Extensions.swift */; };
+		965856C31CCD787500ECA86C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965856C01CCD785400ECA86C /* Extensions.swift */; };
+		965856C41CCD787900ECA86C /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965856BF1CCD785400ECA86C /* Components.swift */; };
+		965856C71CCD792A00ECA86C /* LikesComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965856C51CCD792A00ECA86C /* LikesComponentView.swift */; };
+		965856C81CCD792A00ECA86C /* WithTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965856C61CCD792A00ECA86C /* WithTableView.swift */; };
 		D003544E1CA9A5E0006DA250 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D003544D1CA9A5E0006DA250 /* AppDelegate.swift */; };
 		D00354501CA9A5E0006DA250 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D003544F1CA9A5E0006DA250 /* ViewController.swift */; };
 		D00354521CA9A5E0006DA250 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D00354511CA9A5E0006DA250 /* Assets.xcassets */; };
@@ -101,7 +106,6 @@
 		1621489C1CABF5E70029CF93 /* WithComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WithComponent.swift; sourceTree = "<group>"; };
 		165B2BE91C89E7B8009F81AB /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		166426341CA977EC00371BB0 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
-		166426361CAA723700371BB0 /* ComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		1664263B1CAA789100371BB0 /* WithListOfComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WithListOfComponents.swift; sourceTree = "<group>"; };
 		168E96411C89AF6B00AEEC7F /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		168E96431C89AF6B00AEEC7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +123,10 @@
 		16C073841C889D15005EB8DD /* Layout.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Layout.c; sourceTree = "<group>"; };
 		16C073851C889D15005EB8DD /* Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Layout.h; sourceTree = "<group>"; };
 		16C073881C889DB9005EB8DD /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		965856BF1CCD785400ECA86C /* Components.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		965856C01CCD785400ECA86C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		965856C51CCD792A00ECA86C /* LikesComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikesComponentView.swift; sourceTree = "<group>"; };
+		965856C61CCD792A00ECA86C /* WithTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WithTableView.swift; sourceTree = "<group>"; };
 		D003544B1CA9A5E0006DA250 /* DemoOSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoOSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D003544D1CA9A5E0006DA250 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D003544F1CA9A5E0006DA250 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +206,8 @@
 		168E96421C89AF6B00AEEC7F /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				965856C51CCD792A00ECA86C /* LikesComponentView.swift */,
+				965856C61CCD792A00ECA86C /* WithTableView.swift */,
 				168E96431C89AF6B00AEEC7F /* AppDelegate.swift */,
 				168E96451C89AF6B00AEEC7F /* WithoutComponent.swift */,
 				1621489C1CABF5E70029CF93 /* WithComponent.swift */,
@@ -245,6 +255,8 @@
 		16C0737B1C889D09005EB8DD /* FlexboxLayout */ = {
 			isa = PBXGroup;
 			children = (
+				965856BF1CCD785400ECA86C /* Components.swift */,
+				965856C01CCD785400ECA86C /* Extensions.swift */,
 				16C0737C1C889D09005EB8DD /* FlexboxLayout.h */,
 				16C0737E1C889D0A005EB8DD /* Info.plist */,
 				16C073841C889D15005EB8DD /* Layout.c */,
@@ -252,7 +264,6 @@
 				16C073881C889DB9005EB8DD /* Layout.swift */,
 				168E96531C89AF8800AEEC7F /* ViewType.swift */,
 				166426341CA977EC00371BB0 /* Geometry.swift */,
-				166426361CAA723700371BB0 /* ComponentView.swift */,
 			);
 			path = FlexboxLayout;
 			sourceTree = "<group>";
@@ -580,10 +591,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1621489D1CABF5E70029CF93 /* WithComponent.swift in Sources */,
+				965856C71CCD792A00ECA86C /* LikesComponentView.swift in Sources */,
 				168E96461C89AF6B00AEEC7F /* WithoutComponent.swift in Sources */,
 				165B2BEA1C89E7B8009F81AB /* Extensions.swift in Sources */,
 				1664263C1CAA789100371BB0 /* WithListOfComponents.swift in Sources */,
 				16A1D4E21C930E3A001AEDD7 /* main.m in Sources */,
+				965856C81CCD792A00ECA86C /* WithTableView.swift in Sources */,
 				1621489B1CABF2EC0029CF93 /* PostComponentView.swift in Sources */,
 				168E96441C89AF6B00AEEC7F /* AppDelegate.swift in Sources */,
 			);
@@ -594,8 +607,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				16C073861C889D15005EB8DD /* Layout.c in Sources */,
-				166426371CAA723700371BB0 /* ComponentView.swift in Sources */,
+				965856C21CCD785400ECA86C /* Extensions.swift in Sources */,
 				168E96571C89B32F00AEEC7F /* Layout.swift in Sources */,
+				965856C11CCD785400ECA86C /* Components.swift in Sources */,
 				168E96581C89B32F00AEEC7F /* ViewType.swift in Sources */,
 				166426351CA977EC00371BB0 /* Geometry.swift in Sources */,
 			);
@@ -630,6 +644,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				965856C31CCD787500ECA86C /* Extensions.swift in Sources */,
+				965856C41CCD787900ECA86C /* Components.swift in Sources */,
 				D003549E1CA9A7E7006DA250 /* ViewType.swift in Sources */,
 				D003549F1CA9A7EA006DA250 /* Geometry.swift in Sources */,
 				D003549B1CA9A7D8006DA250 /* Layout.c in Sources */,
@@ -1074,6 +1090,7 @@
 				D003546E1CA9A5E0006DA250 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D00354741CA9A5E0006DA250 /* Build configuration list for PBXNativeTarget "DemoOSXTests" */ = {
 			isa = XCConfigurationList;
@@ -1082,6 +1099,7 @@
 				D00354701CA9A5E0006DA250 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D00354751CA9A5E0006DA250 /* Build configuration list for PBXNativeTarget "DemoOSXUITests" */ = {
 			isa = XCConfigurationList;
@@ -1090,6 +1108,7 @@
 				D00354721CA9A5E0006DA250 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D00354931CA9A7A7006DA250 /* Build configuration list for PBXNativeTarget "FlexboxLayout-OSX" */ = {
 			isa = XCConfigurationList;
@@ -1098,6 +1117,7 @@
 				D00354951CA9A7A7006DA250 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D00354971CA9A7A7006DA250 /* Build configuration list for PBXNativeTarget "FlexboxLayout-OSXTests" */ = {
 			isa = XCConfigurationList;
@@ -1106,6 +1126,7 @@
 				D00354991CA9A7A7006DA250 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -37,8 +37,8 @@ class ViewControllerWithoutComponent: UIViewController {
                 
                 UIView().configure({
                     $0.backgroundColor = UIColor.a
-                    $0.layer.cornerRadius = 27.0
-                    $0.style.dimensions = (54, 54)
+                    $0.layer.cornerRadius = 12.0
+                    $0.style.dimensions = (24, 24)
                     $0.style.margin = defaultMargin
                     $0.style.alignSelf = .FlexStart
                     $0.style.justifyContent = .FlexStart
@@ -57,13 +57,14 @@ class ViewControllerWithoutComponent: UIViewController {
                             $0.style.margin = (0, 4.0, 0, 0, 8.0, 0)
                         }),
                         
+                        
                         UILabel().configure({
-                            $0.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur adipisci velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur adipisci velit."
+                            $0.text = "--"
                             $0.textAlignment = .Left
                             $0.font = UIFont.systemFontOfSize(12, weight: UIFontWeightLight)
                             $0.numberOfLines = 0
                             $0.style.alignSelf = .FlexStart
-                            $0.style.margin = (0, 6.0, 0, 0, 8.0, 0)
+                            $0.style.margin = (120, 6.0, 0, 0, 8.0, 0)
                             $0.style.maxDimensions.height = 96
                             $0.style.margin = defaultMargin
                         })
@@ -76,7 +77,7 @@ class ViewControllerWithoutComponent: UIViewController {
                     $0.textColor = UIColor.a
                     $0.textAlignment = .Center
                     $0.font = UIFont.systemFontOfSize(12, weight: UIFontWeightLight)
-                    $0.style.minDimensions = (54, 54)
+                    $0.style.minDimensions = (64, 54)
                     $0.style.alignSelf = .FlexEnd
                     $0.style.flex = 0.2
                     $0.style.margin = defaultMargin
@@ -90,14 +91,14 @@ class ViewControllerWithoutComponent: UIViewController {
         self.render()
     }
     
-    func layout() {
-        self.treeView?.layout()
+    func render() {
+        self.treeView?.render()
         self.treeView?.center = self.view.center
     }
     
-    func render() {
-        self.treeView?.configure()
-        self.layout()
+    func injected() {
+        self.prepareViewHierarchy()
+        self.render()
     }
     
     

@@ -110,12 +110,15 @@ class ViewController: NSViewController {
     }
 
     func layout() {
-        self.treeView?.layout(self.view.bounds.size)
+//        self.treeView?.layout(self.view.bounds.size)
+        self.treeView?.layout()
     }
     
     func render() {
-        self.treeView?.configure()
-        self.treeView?.layout(self.view.bounds.size)
+        self.treeView?.configure({ (view) in
+        })
+//        self.treeView?.layout(self.view.bounds.size)
+        self.treeView?.layout()
     }
 
 }
